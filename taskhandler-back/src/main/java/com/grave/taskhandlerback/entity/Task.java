@@ -20,10 +20,11 @@ public class Task {
     @JoinColumn(name="id_board", nullable=false)
     private Board board;
 
-    public Task(Long idTask, String title, String description) {
+    public Task(Long idTask, String title, String description, List<CheckItem> checklist) {
         this.idTask = idTask;
         this.title = title;
         this.description = description;
+        this.checklist = checklist;
     }
 
     public Task() {}
@@ -38,5 +39,9 @@ public class Task {
 
     public String getDescription() {
         return description;
+    }
+
+    public List<CheckItem> getChecklist() {
+        return checklist;
     }
 }

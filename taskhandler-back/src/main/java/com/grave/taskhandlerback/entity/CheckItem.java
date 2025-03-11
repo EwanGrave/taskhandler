@@ -9,14 +9,16 @@ public class CheckItem {
     @Column(name = "id_checkitem")
     private Long idCheckitem;
     private boolean isChecked;
+    private String description;
 
     @ManyToOne
     @JoinColumn(name="id_task", nullable=false)
     private Task task;
 
-    public CheckItem(Long idCheckitem, boolean isChecked) {
+    public CheckItem(Long idCheckitem, boolean isChecked, String description) {
         this.idCheckitem = idCheckitem;
         this.isChecked = isChecked;
+        this.description = description;
     }
 
     public CheckItem() {}
@@ -27,5 +29,9 @@ public class CheckItem {
 
     public boolean isChecked() {
         return isChecked;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }

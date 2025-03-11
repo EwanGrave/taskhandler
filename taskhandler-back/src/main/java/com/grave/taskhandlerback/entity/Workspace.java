@@ -2,7 +2,7 @@ package com.grave.taskhandlerback.entity;
 
 import jakarta.persistence.*;
 
-import java.util.Set;
+import java.util.List;
 
 @Entity
 public class Workspace {
@@ -18,14 +18,16 @@ public class Workspace {
             name = "membership",
             joinColumns = @JoinColumn(name = "id_workspace"),
             inverseJoinColumns = @JoinColumn(name = "id_user"))
-    private Set<User> users;
+    private List<User> users;
 
     @OneToMany(mappedBy = "workspace")
-    private Set<Board> boards;
+    private List<Board> boards;
 
-    public Workspace(Long idWorkspace, String name) {
+    public Workspace(Long idWorkspace, String name, List<Board> boards, List<User> users) {
         this.idWorkspace = idWorkspace;
         this.name = name;
+        this.boards = boards;
+        this.users = users;
     }
 
     public Workspace() {}
@@ -36,5 +38,13 @@ public class Workspace {
 
     public String getName() {
         return name;
+    }
+
+    public List<Board> getBoards() {
+        return boards;
+    }
+
+    public List<User> getUsers() {
+        return users;
     }
 }
