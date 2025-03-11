@@ -20,7 +20,7 @@ public class Workspace {
             inverseJoinColumns = @JoinColumn(name = "id_user"))
     private List<User> users;
 
-    @OneToMany(mappedBy = "workspace")
+    @OneToMany(mappedBy = "workspace", cascade = CascadeType.ALL)
     private List<Board> boards;
 
     public Workspace(Long idWorkspace, String name, List<Board> boards, List<User> users) {

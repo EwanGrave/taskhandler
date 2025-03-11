@@ -38,4 +38,8 @@ public class Board {
     public List<Task> getTasks() {
         return tasks;
     }
+
+    public void setWorkspace(Workspace workspace) {
+        this.workspace = workspace;
+    }
 }
