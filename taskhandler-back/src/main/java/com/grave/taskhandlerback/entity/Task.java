@@ -12,18 +12,18 @@ public class Task {
     private Long idTask;
     private String title;
     private String description;
-    @ElementCollection
-    private List<String> checklist;
+
+    @OneToMany(mappedBy = "task")
+    private List<CheckItem> checklist;
 
     @ManyToOne
     @JoinColumn(name="id_board", nullable=false)
     private Board board;
 
-    public Task(Long idTask, String title, String description, List<String> checklist) {
+    public Task(Long idTask, String title, String description) {
         this.idTask = idTask;
         this.title = title;
         this.description = description;
-        this.checklist = checklist;
     }
 
     public Task() {}
@@ -38,9 +38,5 @@ public class Task {
 
     public String getDescription() {
         return description;
-    }
-
-    public List<String> getChecklist() {
-        return checklist;
     }
 }
