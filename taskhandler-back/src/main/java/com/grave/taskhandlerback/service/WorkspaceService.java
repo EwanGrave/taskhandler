@@ -18,4 +18,9 @@ public class WorkspaceService {
         List<Workspace> workspaces = workspaceRepository.findAll();
         return workspaces.stream().map(WorkspaceDTO::convertToDTO).collect(Collectors.toList());
     }
+
+    public void createWorkspace(WorkspaceDTO workspaceDTO) {
+        Workspace workspace = WorkspaceDTO.convertToEntity(workspaceDTO);
+        workspaceRepository.save(workspace);
+    }
 }
