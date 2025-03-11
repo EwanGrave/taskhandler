@@ -34,6 +34,10 @@ public class TaskDTO {
         return checkitems;
     }
 
+    public void addCheckitem(CheckItemDTO checkitem) {
+        this.checkitems.add(checkitem);
+    }
+
     public static TaskDTO convertToDTO(Task task) {
         return new TaskDTO(
                 task.getIdTask(),
