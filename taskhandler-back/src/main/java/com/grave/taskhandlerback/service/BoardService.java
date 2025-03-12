@@ -22,6 +22,16 @@ public class BoardService {
         boardRepository.save(board);
     }
 
+    public void deleteBoard(int idBoard) {
+        boardRepository.deleteById(idBoard);
+    }
+
+    public void updateBoard(BoardDTO boardDTO) throws Exception {
+        Board oldBoard = this.getBoardById(boardDTO.getIdBoard().intValue());
+        oldBoard.setName(boardDTO.getName());
+        boardRepository.save(oldBoard);
+    }
+
     public Board getBoardById(int id) throws Exception {
         Board board = boardRepository.findById(id).orElse(null);
         if (board == null) {

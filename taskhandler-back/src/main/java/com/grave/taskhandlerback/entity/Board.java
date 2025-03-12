@@ -42,4 +42,8 @@ public class Board {
     public void setWorkspace(Workspace workspace) {
         this.workspace = workspace;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
