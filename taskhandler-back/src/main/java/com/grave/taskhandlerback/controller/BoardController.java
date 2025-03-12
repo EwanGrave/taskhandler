@@ -18,9 +18,9 @@ public class BoardController {
     public ResponseEntity<String> createBoard(@RequestBody BoardDTO board, @PathVariable int idWorkspace) {
         try {
             boardService.createBoard(board, idWorkspace);
-            return ResponseEntity.status(HttpStatus.CREATED).body("Workspace created");
+            return ResponseEntity.status(HttpStatus.CREATED).body("Board created");
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while creating Workspace : " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while creating board : " + e.getMessage());
         }
     }
 }

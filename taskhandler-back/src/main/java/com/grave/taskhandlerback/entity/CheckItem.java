@@ -34,4 +34,8 @@ public class CheckItem {
     public String getDescription() {
         return description;
     }
+
+    public void setTask(Task task) {
+        this.task = task;
+    }
 }

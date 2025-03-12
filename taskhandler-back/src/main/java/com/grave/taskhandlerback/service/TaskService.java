@@ -21,4 +21,12 @@ public class TaskService {
         task.setBoard(board);
         taskRepository.save(task);
     }
+
+    public Task getTaskById(int id) throws Exception {
+        Task task = taskRepository.findById(id).orElse(null);
+        if (task == null) {
+            throw new Exception("Missing task for ID " + id);
+        }
+        return task;
+    }
 }
