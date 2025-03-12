@@ -44,4 +44,8 @@ public class Task {
     public List<CheckItem> getChecklist() {
         return checklist;
     }
+
+    public void setBoard(Board board) {
+        this.board = board;
+    }
 }

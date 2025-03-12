@@ -19,12 +19,12 @@ public class WorkspaceService {
         return workspaces.stream().map(WorkspaceDTO::convertToDTO).collect(Collectors.toList());
     }
 
-    public WorkspaceDTO getWorkspaceById(int id) throws Exception {
+    public Workspace getWorkspaceById(int id) throws Exception {
         Workspace workspace = workspaceRepository.findById(id).orElse(null);
         if (workspace == null) {
             throw new Exception("Missing workspace for ID" + id);
         }
-        return WorkspaceDTO.convertToDTO(workspace);
+        return workspace;
     }
 
     public void createWorkspace(WorkspaceDTO workspaceDTO) {
