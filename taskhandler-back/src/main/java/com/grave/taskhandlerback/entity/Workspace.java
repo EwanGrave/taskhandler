@@ -47,4 +47,6 @@ public class Workspace {
     public List<User> getUsers() {
         return users;
     }
+
+    public void addUser(User user) { this.users.add(user); }
 }

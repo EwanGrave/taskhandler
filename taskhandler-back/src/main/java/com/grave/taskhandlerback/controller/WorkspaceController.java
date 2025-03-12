@@ -30,4 +30,14 @@ public class WorkspaceController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while creating Workspace : " + e.getMessage());
         }
     }
+
+    @PostMapping("/create/membership/{idWorkspace}/{idUser}")
+    public ResponseEntity<String> addMembership(@PathVariable int idWorkspace, @PathVariable int idUser) {
+        try {
+            workspaceService.addMembership(idWorkspace, idUser);
+            return ResponseEntity.status(HttpStatus.CREATED).body("Membership added");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while adding membership : " + e.getMessage());
+        }
+    }
 }

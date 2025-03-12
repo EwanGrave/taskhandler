@@ -1,6 +1,7 @@
 package com.grave.taskhandlerback.service;
 
 import com.grave.taskhandlerback.dto.WorkspaceDTO;
+import com.grave.taskhandlerback.entity.User;
 import com.grave.taskhandlerback.entity.Workspace;
 import com.grave.taskhandlerback.repository.WorkspaceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,9 @@ import java.util.stream.Collectors;
 public class WorkspaceService {
     @Autowired
     private WorkspaceRepository workspaceRepository;
+
+    @Autowired
+    private UserService userService;
 
     public List<WorkspaceDTO> getAllWorkspaces() {
         List<Workspace> workspaces = workspaceRepository.findAll();
@@ -29,6 +33,18 @@ public class WorkspaceService {
 
     public void createWorkspace(WorkspaceDTO workspaceDTO) {
         Workspace workspace = WorkspaceDTO.convertToEntity(workspaceDTO);
+        workspaceRepository.save(workspace);
+    }
+
+    public void addMembership(int idWorkspace, int idUser) throws Exception {
+        Workspace workspace = this.getWorkspaceById(idWorkspace);
+        User user = userService.getUserById(idUser);
+
+        if (workspace.getUsers().contains(user)) {
+            throw new Exception("User already exists in workspace");
+        }
+
+        workspace.addUser(user);
         workspaceRepository.save(workspace);
     }
 }

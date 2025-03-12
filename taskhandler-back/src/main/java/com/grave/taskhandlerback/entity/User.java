@@ -42,4 +42,6 @@ public class User {
     public String getPassword() {
         return password;
     }
+
+    public void addWorkspace(Workspace workspace) { this.workspace.add(workspace); }
 }
