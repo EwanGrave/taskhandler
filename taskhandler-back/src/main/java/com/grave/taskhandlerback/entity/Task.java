@@ -13,7 +13,7 @@ public class Task {
     private String title;
     private String description;
 
-    @OneToMany(mappedBy = "task")
+    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
     private List<CheckItem> checklist;
 
     @ManyToOne

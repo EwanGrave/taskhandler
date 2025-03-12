@@ -23,4 +23,24 @@ public class CheckitemController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while creating check item : " + e.getMessage());
         }
     }
+
+    @PostMapping("/delete/{idCheckitem}")
+    public ResponseEntity<String> deleteCheckitem(@PathVariable int idCheckitem) {
+        try {
+            checkitemService.deleteCheckitem(idCheckitem);
+            return ResponseEntity.status(HttpStatus.CREATED).body("Check item deleted");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while deleting check item : " + e.getMessage());
+        }
+    }
+
+    @PostMapping("/update")
+    public ResponseEntity<String> updateCheckitem(@RequestBody CheckItemDTO checkitem) {
+        try {
+            checkitemService.updateCheckitem(checkitem);
+            return ResponseEntity.status(HttpStatus.CREATED).body("Check item updated");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while updating check item : " + e.getMessage());
+        }
+    }
 }

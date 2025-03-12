@@ -21,4 +21,23 @@ public class CheckitemService {
         checkitem.setTask(task);
         checkitemRepository.save(checkitem);
     }
+
+    public void deleteCheckitem(int idCheckitem) {
+        checkitemRepository.deleteById(idCheckitem);
+    }
+
+    public CheckItem getCheckitemById(int id) throws Exception {
+        CheckItem checkitem = checkitemRepository.findById(id).orElse(null);
+        if (checkitem == null) {
+            throw new Exception("Missing check item for ID " + id);
+        }
+        return checkitem;
+    }
+
+    public void updateCheckitem(CheckItemDTO checkitem) throws Exception {
+        CheckItem oldCheckitem = this.getCheckitemById(checkitem.getIdCheckitem().intValue());
+        oldCheckitem.setChecked(checkitem.isChecked());
+        oldCheckitem.setDescription(checkitem.getDescription());
+        checkitemRepository.save(oldCheckitem);
+    }
 }

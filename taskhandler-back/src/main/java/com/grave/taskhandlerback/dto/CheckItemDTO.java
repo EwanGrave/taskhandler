@@ -4,12 +4,12 @@ import com.grave.taskhandlerback.entity.CheckItem;
 
 public class CheckItemDTO {
     private Long idCheckitem;
-    private boolean isChecked;
+    private boolean checked;
     private String description;
 
-    public CheckItemDTO(Long idCheckitem, boolean isChecked, String description) {
+    public CheckItemDTO(Long idCheckitem, boolean checked, String description) {
         this.idCheckitem = idCheckitem;
-        this.isChecked = isChecked;
+        this.checked = checked;
         this.description = description;
     }
 
@@ -18,7 +18,7 @@ public class CheckItemDTO {
     }
 
     public boolean isChecked() {
-        return isChecked;
+        return checked;
     }
 
     public String getDescription() {

@@ -16,7 +16,7 @@ public class Board {
     @JoinColumn(name="id_workspace", nullable=false)
     private Workspace workspace;
 
-    @OneToMany(mappedBy = "board")
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
     private List<Task> tasks;
 
     public Board(Long idBoard, String name, List<Task> tasks) {

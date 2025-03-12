@@ -8,16 +8,16 @@ public class CheckItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_checkitem")
     private Long idCheckitem;
-    private boolean isChecked;
+    private boolean checked;
     private String description;
 
     @ManyToOne
     @JoinColumn(name="id_task", nullable=false)
     private Task task;
 
-    public CheckItem(Long idCheckitem, boolean isChecked, String description) {
+    public CheckItem(Long idCheckitem, boolean checked, String description) {
         this.idCheckitem = idCheckitem;
-        this.isChecked = isChecked;
+        this.checked = checked;
         this.description = description;
     }
 
@@ -28,7 +28,7 @@ public class CheckItem {
     }
 
     public boolean isChecked() {
-        return isChecked;
+        return checked;
     }
 
     public String getDescription() {
@@ -37,5 +37,13 @@ public class CheckItem {
 
     public void setTask(Task task) {
         this.task = task;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
