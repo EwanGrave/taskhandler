@@ -1,5 +1,6 @@
 package com.grave.taskhandlerback.service;
 
+import com.grave.taskhandlerback.dto.user.UserDTOWithPassword;
 import com.grave.taskhandlerback.entity.User;
 import com.grave.taskhandlerback.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,5 +17,9 @@ public class UserService {
             throw new Exception("Missing user for ID " + id);
         }
         return user;
+    }
+
+    public void createUser(UserDTOWithPassword user) {
+        userRepository.save(UserDTOWithPassword.convertToEntity(user));
     }
 }
