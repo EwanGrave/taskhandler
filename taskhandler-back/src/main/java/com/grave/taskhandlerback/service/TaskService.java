@@ -40,4 +40,16 @@ public class TaskService {
         }
         return task;
     }
+
+    public void changeBoard(int idNewBoard, TaskDTO taskDTO) throws Exception {
+        Board newBoard = boardService.getBoardById(idNewBoard);
+        Task task = this.getTaskById(taskDTO.getIdTask().intValue());
+
+        if (newBoard.getTasks().contains(task)) {
+            throw new Exception("Task " + taskDTO.getIdTask() + " is already in the board");
+        }
+
+        task.setBoard(newBoard);
+        taskRepository.save(task);
+    }
 }

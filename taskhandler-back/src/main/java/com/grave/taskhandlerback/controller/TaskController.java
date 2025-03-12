@@ -43,4 +43,14 @@ public class TaskController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while updating task : " + e.getMessage());
         }
     }
+
+    @PostMapping("/change_board/{idNewBoard}")
+    public ResponseEntity<String> changeBoard(@PathVariable int idNewBoard, @RequestBody TaskDTO task) {
+        try {
+            taskService.changeBoard(idNewBoard, task);
+            return ResponseEntity.status(HttpStatus.CREATED).body("Task board updated");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while updating task board : " + e.getMessage());
+        }
+    }
 }
