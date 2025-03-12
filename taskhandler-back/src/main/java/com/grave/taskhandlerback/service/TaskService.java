@@ -22,6 +22,17 @@ public class TaskService {
         taskRepository.save(task);
     }
 
+    public void deleteTask(int idTask) {
+        taskRepository.deleteById(idTask);
+    }
+
+    public void updateTask(TaskDTO taskDTO) throws Exception {
+        Task oldTask = this.getTaskById(taskDTO.getIdTask().intValue());
+        oldTask.setTitle(taskDTO.getTitle());
+        oldTask.setDescription(taskDTO.getDescription());
+        taskRepository.save(oldTask);
+    }
+
     public Task getTaskById(int id) throws Exception {
         Task task = taskRepository.findById(id).orElse(null);
         if (task == null) {

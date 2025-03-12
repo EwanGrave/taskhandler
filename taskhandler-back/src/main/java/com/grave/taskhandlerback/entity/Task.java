@@ -48,4 +48,12 @@ public class Task {
     public void setBoard(Board board) {
         this.board = board;
     }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }
