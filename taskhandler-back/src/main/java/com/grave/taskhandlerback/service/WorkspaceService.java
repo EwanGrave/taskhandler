@@ -23,6 +23,16 @@ public class WorkspaceService {
         return workspaces.stream().map(WorkspaceDTO::convertToDTO).collect(Collectors.toList());
     }
 
+    public WorkspaceDTO getWorkspaceDTOById(int idWorkspace) throws Exception {
+        Workspace workspace = this.getWorkspaceById(idWorkspace);
+        return WorkspaceDTO.convertToDTO(workspace);
+    }
+
+    public List<WorkspaceDTO> getWorkspaceDTOByUser(int idUser) throws Exception {
+        User user = userService.getUserById(idUser);
+        return user.getWorkspace().stream().map(WorkspaceDTO::convertToDTO).collect(Collectors.toList());
+    }
+
     public void deleteWorkspace(int idWorkspace) {
         workspaceRepository.deleteById(idWorkspace);
     }

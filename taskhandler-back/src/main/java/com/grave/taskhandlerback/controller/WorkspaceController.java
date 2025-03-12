@@ -1,6 +1,5 @@
 package com.grave.taskhandlerback.controller;
 
-import com.grave.taskhandlerback.dto.BoardDTO;
 import com.grave.taskhandlerback.dto.WorkspaceDTO;
 import com.grave.taskhandlerback.service.WorkspaceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -20,6 +20,24 @@ public class WorkspaceController {
     @GetMapping("/all")
     public List<WorkspaceDTO> getAllWorkspaces() {
         return workspaceService.getAllWorkspaces();
+    }
+
+    @GetMapping("/{idWorkspace}")
+    public WorkspaceDTO getWorkspaceById(@PathVariable int idWorkspace) {
+        try {
+            return workspaceService.getWorkspaceDTOById(idWorkspace);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        }
+    }
+
+    @GetMapping("/user/{idUser}")
+    public List<WorkspaceDTO> getWorkspaceByUser(@PathVariable int idUser) {
+        try {
+            return workspaceService.getWorkspaceDTOByUser(idUser);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        }
     }
 
     @PostMapping("/create")

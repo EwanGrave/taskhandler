@@ -2,7 +2,7 @@ package com.grave.taskhandlerback.entity;
 
 import jakarta.persistence.*;
 
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -16,7 +16,7 @@ public class User {
     private String password;
 
     @ManyToMany(mappedBy = "users")
-    private Set<Workspace> workspace;
+    private List<Workspace> workspace;
 
     public User(Long idUser, String username, String password) {
         this.idUser = idUser;
@@ -44,4 +44,8 @@ public class User {
     }
 
     public void addWorkspace(Workspace workspace) { this.workspace.add(workspace); }
+
+    public List<Workspace> getWorkspace() {
+        return workspace;
+    }
 }
