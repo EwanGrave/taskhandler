@@ -33,12 +33,21 @@ public class WorkspaceService {
         return user.getWorkspace().stream().map(WorkspaceDTO::convertToDTO).collect(Collectors.toList());
     }
 
-    public void deleteWorkspace(int idWorkspace) {
+    public void deleteWorkspace(int idWorkspace, int idUser) throws Exception {
+        User user = userService.getUserById(idUser);
+        Workspace workspace = this.getWorkspaceById(idWorkspace);
+        if (workspace.getUsers().get(0) != user) {
+            throw new Exception("User has not permission to delete workspace");
+        }
         workspaceRepository.deleteById(idWorkspace);
     }
 
-    public void updateWorkspace(WorkspaceDTO workspaceDTO) throws Exception {
+    public void updateWorkspace(WorkspaceDTO workspaceDTO, int idUser) throws Exception {
+        User user = userService.getUserById(idUser);
         Workspace oldWorkspace = this.getWorkspaceById(workspaceDTO.getIdWorkspace().intValue());
+        if (oldWorkspace.getUsers().get(0) != user) {
+            throw new Exception("User has not permission to update workspace");
+        }
         oldWorkspace.setName(workspaceDTO.getName());
         workspaceRepository.save(oldWorkspace);
     }

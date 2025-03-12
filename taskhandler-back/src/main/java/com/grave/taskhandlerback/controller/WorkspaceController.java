@@ -60,20 +60,20 @@ public class WorkspaceController {
         }
     }
 
-    @PostMapping("/delete/{idWorkspace}")
-    public ResponseEntity<String> deleteWorkspace(@PathVariable int idWorkspace) {
+    @PostMapping("/delete/{idWorkspace}/{idUser}")
+    public ResponseEntity<String> deleteWorkspace(@PathVariable int idWorkspace, @PathVariable int idUser) {
         try {
-            workspaceService.deleteWorkspace(idWorkspace);
+            workspaceService.deleteWorkspace(idWorkspace, idUser);
             return ResponseEntity.status(HttpStatus.CREATED).body("Workspace deleted");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while deleting workspace : " + e.getMessage());
         }
     }
 
-    @PostMapping("/update")
-    public ResponseEntity<String> updateWorkspace(@RequestBody WorkspaceDTO workspace) {
+    @PostMapping("/update/{idUser}")
+    public ResponseEntity<String> updateWorkspace(@RequestBody WorkspaceDTO workspace, @PathVariable int idUser) {
         try {
-            workspaceService.updateWorkspace(workspace);
+            workspaceService.updateWorkspace(workspace, idUser);
             return ResponseEntity.status(HttpStatus.CREATED).body("Workspace updated");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while updating workspace : " + e.getMessage());
