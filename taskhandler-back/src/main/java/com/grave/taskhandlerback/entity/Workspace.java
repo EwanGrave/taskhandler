@@ -10,7 +10,6 @@ public class Workspace {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_workspace")
     private Long idWorkspace;
-
     private String name;
 
     @ManyToMany
@@ -49,4 +48,8 @@ public class Workspace {
     }
 
     public void addUser(User user) { this.users.add(user); }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

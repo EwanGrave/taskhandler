@@ -1,5 +1,6 @@
 package com.grave.taskhandlerback.controller;
 
+import com.grave.taskhandlerback.dto.BoardDTO;
 import com.grave.taskhandlerback.dto.WorkspaceDTO;
 import com.grave.taskhandlerback.service.WorkspaceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,26 @@ public class WorkspaceController {
             return ResponseEntity.status(HttpStatus.CREATED).body("Membership added");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while adding membership : " + e.getMessage());
+        }
+    }
+
+    @PostMapping("/delete/{idWorkspace}")
+    public ResponseEntity<String> deleteWorkspace(@PathVariable int idWorkspace) {
+        try {
+            workspaceService.deleteWorkspace(idWorkspace);
+            return ResponseEntity.status(HttpStatus.CREATED).body("Workspace deleted");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while deleting workspace : " + e.getMessage());
+        }
+    }
+
+    @PostMapping("/update")
+    public ResponseEntity<String> updateWorkspace(@RequestBody WorkspaceDTO workspace) {
+        try {
+            workspaceService.updateWorkspace(workspace);
+            return ResponseEntity.status(HttpStatus.CREATED).body("Workspace updated");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while updating workspace : " + e.getMessage());
         }
     }
 }

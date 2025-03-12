@@ -1,7 +1,6 @@
 package com.grave.taskhandlerback.controller;
 
 import com.grave.taskhandlerback.dto.BoardDTO;
-import com.grave.taskhandlerback.dto.TaskDTO;
 import com.grave.taskhandlerback.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -23,6 +23,16 @@ public class WorkspaceService {
         return workspaces.stream().map(WorkspaceDTO::convertToDTO).collect(Collectors.toList());
     }
 
+    public void deleteWorkspace(int idWorkspace) {
+        workspaceRepository.deleteById(idWorkspace);
+    }
+
+    public void updateWorkspace(WorkspaceDTO workspaceDTO) throws Exception {
+        Workspace oldWorkspace = this.getWorkspaceById(workspaceDTO.getIdWorkspace().intValue());
+        oldWorkspace.setName(workspaceDTO.getName());
+        workspaceRepository.save(oldWorkspace);
+    }
+
     public Workspace getWorkspaceById(int id) throws Exception {
         Workspace workspace = workspaceRepository.findById(id).orElse(null);
         if (workspace == null) {
