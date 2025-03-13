@@ -10,7 +10,7 @@ import {
 })
 export class LoginService {
   private userLogin = inject(UserControllerService);
-  private readonly USER_DATA_KEY = 'USER_Data';
+  private readonly USER_DATA_KEY = 'USER_DATA';
 
   constructor() {}
 
