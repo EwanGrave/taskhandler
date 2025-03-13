@@ -4,12 +4,14 @@ import {
   UserDTO,
   UserDTOWithPassword,
 } from '../../../api';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
   private userLogin = inject(UserControllerService);
+  private router = inject(Router);
   private readonly USER_DATA_KEY = 'USER_DATA';
 
   constructor() {}
@@ -45,7 +47,7 @@ export class LoginService {
         next: (value) => {
           if (value) {
             this.setStorageItem(this.USER_DATA_KEY, JSON.stringify(value));
-            window.location.reload();
+            this.router.navigate(['/']);
           }
           resolve(value !== null);
         },

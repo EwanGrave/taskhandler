@@ -11,6 +11,7 @@ import {
 } from '@angular/forms';
 import { LoginService } from '../../services/login.service';
 import { shaEncrypt } from '../../utils/StringUtils';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-loginpage',
@@ -26,6 +27,7 @@ import { shaEncrypt } from '../../utils/StringUtils';
 })
 export class LoginpageComponent {
   loginService = inject(LoginService);
+  router = inject(Router);
   isError: boolean = false;
 
   loginForm = new FormGroup({
@@ -35,6 +37,12 @@ export class LoginpageComponent {
       Validators.minLength(3),
     ]),
   });
+
+  ngOnInit(): void {
+    if (this.loginService.getLoggedUser()) {
+      this.router.navigate(['/']);
+    }
+  }
 
   login(): void {
     if (this.loginForm.valid) {
