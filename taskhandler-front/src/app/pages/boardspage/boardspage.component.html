@@ -1,3 +1,16 @@
 <div id="content">
   <app-header [user]="user"></app-header>
+
+  <div class="boards">
+    @for (board of boards; track $index) {
+    <mat-card class="board-card" appearance="outlined">
+      <mat-card-content>{{ board.name }}</mat-card-content>
+    </mat-card>
+    } @empty {
+    <div>Aucun tableau</div>
+    }
+    <button mat-button (click)="openCreateBoardDialog()">
+      <i class="material-icons">add</i>
+    </button>
+  </div>
 </div>

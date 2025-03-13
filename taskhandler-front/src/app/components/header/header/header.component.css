@@ -1,6 +1,6 @@
 #header {
   background-color: #1d2125;
-  border-bottom: 1px solid lightgrey;
+  border-bottom: 0.5px solid rgb(88, 88, 88);
   display: flex;
   flex-direction: row;
   height: 50px;

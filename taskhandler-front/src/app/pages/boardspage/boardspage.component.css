@@ -1,0 +1,17 @@
+.boards {
+  margin-top: 30px;
+  padding-left: 20%;
+  padding-right: 20%;
+  display: flex;
+  gap: 10px;
+}
+
+.board-card {
+  font-size: 20px;
+  color: #b6c2cf;
+  background-color: #adb2bb0f;
+  border: 0px;
+  width: 250px;
+  height: 100px;
+  border-radius: 5px;
+}

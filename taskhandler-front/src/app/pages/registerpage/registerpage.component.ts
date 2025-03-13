@@ -52,7 +52,7 @@ export class RegisterpageComponent {
         username: this.registerForm.value.username ?? '',
         password: shaEncrypt(this.registerForm.value.password ?? '', 'sha256'),
       };
-      this.userService.createUser(user);
+      this.userService.createUser(user).subscribe();
       this.route.navigate(['/login']);
     }
   }

@@ -12,3 +12,9 @@ body {
 .error-msg {
   color: rgb(219, 0, 0);
 }
+
+#content {
+  background-color: #1d2125;
+  height: 100%;
+  color: rgb(184, 184, 184);
+}
