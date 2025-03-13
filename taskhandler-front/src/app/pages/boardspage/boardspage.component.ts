@@ -1,19 +1,19 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../../services/login.service';
-import { WorkspaceControllerService, WorkspaceDTO } from '../../../../api';
 import { HeaderComponent } from '../../components/header/header/header.component';
+import { BoardControllerService, BoardDTO } from '../../../../api';
 
 @Component({
-  selector: 'app-workspacespage',
+  selector: 'app-boardspage',
   imports: [HeaderComponent],
-  templateUrl: './workspacespage.component.html',
-  styleUrl: './workspacespage.component.css',
+  templateUrl: './boardspage.component.html',
+  styleUrl: './boardspage.component.css',
 })
 export class WorkspacespageComponent {
   loginService = inject(LoginService);
-  workspacesService = inject(WorkspaceControllerService);
-  workspaces: WorkspaceDTO[] = [];
+  boardsService = inject(BoardControllerService);
+  boards: BoardDTO[] = [];
   router = inject(Router);
 
   ngOnInit(): void {
@@ -21,9 +21,9 @@ export class WorkspacespageComponent {
     if (!user || !user.idUser) {
       this.router.navigate(['/login']);
     } else {
-      this.workspacesService
-        .getWorkspaceByUser(user.idUser)
-        .subscribe((workspaces) => (this.workspaces = workspaces));
+      this.boardsService
+        .getBoardByUser(user.idUser)
+        .subscribe((boards) => (this.boards = boards));
     }
   }
 }

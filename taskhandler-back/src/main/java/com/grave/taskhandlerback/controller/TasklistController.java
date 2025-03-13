@@ -14,10 +14,10 @@ public class TasklistController {
     @Autowired
     private TasklistService tasklistService;
 
-    @PostMapping("/create/{idWorkspace}")
-    public ResponseEntity<String> createTasklist(@RequestBody TasklistDTO tasklist, @PathVariable int idWorkspace) {
+    @PostMapping("/create/{idBoard}")
+    public ResponseEntity<String> createTasklist(@RequestBody TasklistDTO tasklist, @PathVariable int idBoard) {
         try {
-            tasklistService.createTasklist(tasklist, idWorkspace);
+            tasklistService.createTasklist(tasklist, idBoard);
             return ResponseEntity.status(HttpStatus.CREATED).body("Tasklist created");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while creating tasklist : " + e.getMessage());

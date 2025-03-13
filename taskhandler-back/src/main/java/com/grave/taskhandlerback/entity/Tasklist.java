@@ -13,8 +13,8 @@ public class Tasklist {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name="id_workspace", nullable=false)
-    private Workspace workspace;
+    @JoinColumn(name="id_board", nullable=false)
+    private Board board;
 
     @OneToMany(mappedBy = "tasklist", cascade = CascadeType.ALL)
     private List<Task> tasks;
@@ -39,8 +39,8 @@ public class Tasklist {
         return tasks;
     }
 
-    public void setWorkspace(Workspace workspace) {
-        this.workspace = workspace;
+    public void setBoard(Board board) {
+        this.board = board;
     }
 
     public void setName(String name) {

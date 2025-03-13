@@ -16,7 +16,7 @@ public class User {
     private String password;
 
     @ManyToMany(mappedBy = "users")
-    private List<Workspace> workspace;
+    private List<Board> boards;
 
     public User(Long idUser, String username, String password) {
         this.idUser = idUser;
@@ -43,9 +43,9 @@ public class User {
         return password;
     }
 
-    public void addWorkspace(Workspace workspace) { this.workspace.add(workspace); }
+    public void addBoard(Board board) { this.boards.add(board); }
 
-    public List<Workspace> getWorkspace() {
-        return workspace;
+    public List<Board> getBoards() {
+        return boards;
     }
 }

@@ -1,13 +1,13 @@
 package com.grave.taskhandlerback.repository;
 
-import com.grave.taskhandlerback.entity.Workspace;
+import com.grave.taskhandlerback.entity.Board;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface WorkspaceRepository extends JpaRepository<Workspace, Integer> {
+public interface BoardRepository extends JpaRepository<Board, Integer> {
     @Override
-    List<Workspace> findAll();
+    List<Board> findAll();
 }

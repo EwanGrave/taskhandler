@@ -47,7 +47,7 @@ export class LoginService {
         next: (value) => {
           if (value) {
             this.setStorageItem(this.USER_DATA_KEY, JSON.stringify(value));
-            this.router.navigate(['u', user.username, 'workspaces']);
+            this.router.navigate(['u', user.username, 'boards']);
           }
           resolve(value !== null);
         },

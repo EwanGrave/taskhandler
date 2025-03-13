@@ -2,7 +2,7 @@ package com.grave.taskhandlerback.service;
 
 import com.grave.taskhandlerback.dto.TasklistDTO;
 import com.grave.taskhandlerback.entity.Tasklist;
-import com.grave.taskhandlerback.entity.Workspace;
+import com.grave.taskhandlerback.entity.Board;
 import com.grave.taskhandlerback.repository.TasklistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,12 +13,12 @@ public class TasklistService {
     private TasklistRepository tasklistRepository;
 
     @Autowired
-    private WorkspaceService workspaceService;
+    private BoardService boardService;
 
-    public void createTasklist(TasklistDTO tasklistDTO, int idWorkspace) throws Exception {
+    public void createTasklist(TasklistDTO tasklistDTO, int idBoard) throws Exception {
         Tasklist tasklist = TasklistDTO.convertToEntity(tasklistDTO);
-        Workspace workspace = workspaceService.getWorkspaceById(idWorkspace);
-        tasklist.setWorkspace(workspace);
+        Board board = boardService.getBoardById(idBoard);
+        tasklist.setBoard(board);
         tasklistRepository.save(tasklist);
     }
 

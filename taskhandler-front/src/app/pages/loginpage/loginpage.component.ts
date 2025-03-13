@@ -41,7 +41,7 @@ export class LoginpageComponent {
   ngOnInit(): void {
     const user = this.loginService.getLoggedUser();
     if (user) {
-      this.router.navigate(['u', user.username, 'workspaces']);
+      this.router.navigate(['u', user.username, 'boards']);
     }
   }
 
