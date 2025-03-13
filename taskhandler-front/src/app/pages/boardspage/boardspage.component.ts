@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../../services/login.service';
 import { HeaderComponent } from '../../components/header/header/header.component';
-import { BoardControllerService, BoardDTO } from '../../../../api';
+import { BoardControllerService, BoardDTO, UserDTO } from '../../../../api';
 
 @Component({
   selector: 'app-boardspage',
@@ -14,15 +14,16 @@ export class WorkspacespageComponent {
   loginService = inject(LoginService);
   boardsService = inject(BoardControllerService);
   boards: BoardDTO[] = [];
+  user!: UserDTO | null;
   router = inject(Router);
 
   ngOnInit(): void {
-    const user = this.loginService.getLoggedUser();
-    if (!user || !user.idUser) {
+    this.user = this.loginService.getLoggedUser();
+    if (!this.user || !this.user.idUser) {
       this.router.navigate(['/login']);
     } else {
       this.boardsService
-        .getBoardByUser(user.idUser)
+        .getBoardByUser(this.user.idUser)
         .subscribe((boards) => (this.boards = boards));
     }
   }

@@ -1,0 +1,8 @@
+#header {
+  background-color: #1d2125;
+  border-bottom: 1px solid lightgrey;
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  align-items: center;
+}

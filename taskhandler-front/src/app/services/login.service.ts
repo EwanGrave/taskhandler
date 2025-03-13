@@ -38,7 +38,7 @@ export class LoginService {
   logout(): void {
     this.removeStorageItem(this.USER_DATA_KEY);
     sessionStorage.clear();
-    window.location.reload();
+    this.router.navigate(['login']);
   }
 
   login(user: UserDTOWithPassword): Promise<boolean> {
