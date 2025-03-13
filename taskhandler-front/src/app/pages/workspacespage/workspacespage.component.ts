@@ -1,14 +1,14 @@
 import { Component, inject } from '@angular/core';
-import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
+import { LoginService } from '../../services/login.service';
 
 @Component({
-  selector: 'app-boardspage',
+  selector: 'app-workspacespage',
   imports: [],
-  templateUrl: './boardspage.component.html',
-  styleUrl: './boardspage.component.css',
+  templateUrl: './workspacespage.component.html',
+  styleUrl: './workspacespage.component.css',
 })
-export class BoardspageComponent {
+export class WorkspacespageComponent {
   loginService = inject(LoginService);
   router = inject(Router);
 
