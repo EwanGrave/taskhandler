@@ -9,13 +9,13 @@ import java.util.stream.Collectors;
 public class WorkspaceDTO {
     private Long idWorkspace;
     private String name;
-    private List<BoardDTO> boards;
+    private List<TasklistDTO> tasklists;
     private List<UserDTO> users;
 
-    public WorkspaceDTO(Long idWorkspace, String name, List<BoardDTO> boards, List<UserDTO> users) {
+    public WorkspaceDTO(Long idWorkspace, String name, List<TasklistDTO> tasklists, List<UserDTO> users) {
         this.idWorkspace = idWorkspace;
         this.name = name;
-        this.boards = boards;
+        this.tasklists = tasklists;
         this.users = users;
     }
 
@@ -27,8 +27,8 @@ public class WorkspaceDTO {
         return name;
     }
 
-    public List<BoardDTO> getBoards() {
-        return boards;
+    public List<TasklistDTO> getTasklists() {
+        return tasklists;
     }
 
     public List<UserDTO> getUsers() {
@@ -39,7 +39,7 @@ public class WorkspaceDTO {
         return new WorkspaceDTO(
                 workspace.getIdWorkspace(),
                 workspace.getName(),
-                workspace.getBoards().stream().map(BoardDTO::convertToDTO).collect(Collectors.toList()),
+                workspace.getTasklists().stream().map(TasklistDTO::convertToDTO).collect(Collectors.toList()),
                 workspace.getUsers().stream().map(UserDTO::convertToDTO).collect(Collectors.toList())
         );
     }
@@ -48,7 +48,7 @@ public class WorkspaceDTO {
         return new Workspace(
                 workspace.getIdWorkspace(),
                 workspace.getName(),
-                workspace.getBoards().stream().map(BoardDTO::convertToEntity).collect(Collectors.toList()),
+                workspace.getTasklists().stream().map(TasklistDTO::convertToEntity).collect(Collectors.toList()),
                 workspace.getUsers().stream().map(UserDTO::convertToEntity).collect(Collectors.toList())
         );
     }

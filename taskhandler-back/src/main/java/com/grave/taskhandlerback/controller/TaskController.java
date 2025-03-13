@@ -14,10 +14,10 @@ public class TaskController {
     @Autowired
     private TaskService taskService;
 
-    @PostMapping("/create/{idBoard}")
-    public ResponseEntity<String> createTask(@RequestBody TaskDTO task, @PathVariable int idBoard) {
+    @PostMapping("/create/{idTasklist}")
+    public ResponseEntity<String> createTask(@RequestBody TaskDTO task, @PathVariable int idTasklist) {
         try {
-            taskService.createTask(task, idBoard);
+            taskService.createTask(task, idTasklist);
             return ResponseEntity.status(HttpStatus.CREATED).body("Task created");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while creating task : " + e.getMessage());
@@ -44,13 +44,13 @@ public class TaskController {
         }
     }
 
-    @PostMapping("/change_board/{idNewBoard}")
-    public ResponseEntity<String> changeBoard(@PathVariable int idNewBoard, @RequestBody TaskDTO task) {
+    @PostMapping("/change_tasklist/{idNewTasklist}")
+    public ResponseEntity<String> changeTasklist(@PathVariable int idNewTasklist, @RequestBody TaskDTO task) {
         try {
-            taskService.changeBoard(idNewBoard, task);
-            return ResponseEntity.status(HttpStatus.CREATED).body("Task board updated");
+            taskService.changeTasklist(idNewTasklist, task);
+            return ResponseEntity.status(HttpStatus.CREATED).body("Task list updated");
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while updating task board : " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while updating task list : " + e.getMessage());
         }
     }
 }

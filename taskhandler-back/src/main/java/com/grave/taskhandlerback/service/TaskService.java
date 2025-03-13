@@ -1,8 +1,8 @@
 package com.grave.taskhandlerback.service;
 
 import com.grave.taskhandlerback.dto.TaskDTO;
-import com.grave.taskhandlerback.entity.Board;
 import com.grave.taskhandlerback.entity.Task;
+import com.grave.taskhandlerback.entity.Tasklist;
 import com.grave.taskhandlerback.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,12 +13,12 @@ public class TaskService {
     private TaskRepository taskRepository;
 
     @Autowired
-    private BoardService boardService;
+    private TasklistService tasklistService;
 
-    public void createTask(TaskDTO taskDTO, int idBoard) throws Exception {
+    public void createTask(TaskDTO taskDTO, int idTasklist) throws Exception {
         Task task = TaskDTO.convertToEntity(taskDTO);
-        Board board = boardService.getBoardById(idBoard);
-        task.setBoard(board);
+        Tasklist tasklist = tasklistService.getTasklistById(idTasklist);
+        task.setTasklist(tasklist);
         taskRepository.save(task);
     }
 
@@ -41,15 +41,15 @@ public class TaskService {
         return task;
     }
 
-    public void changeBoard(int idNewBoard, TaskDTO taskDTO) throws Exception {
-        Board newBoard = boardService.getBoardById(idNewBoard);
+    public void changeTasklist(int idNewTasklist, TaskDTO taskDTO) throws Exception {
+        Tasklist newTasklist = tasklistService.getTasklistById(idNewTasklist);
         Task task = this.getTaskById(taskDTO.getIdTask().intValue());
 
-        if (newBoard.getTasks().contains(task)) {
-            throw new Exception("Task " + taskDTO.getIdTask() + " is already in the board");
+        if (newTasklist.getTasks().contains(task)) {
+            throw new Exception("Task " + taskDTO.getIdTask() + " is already in the list");
         }
 
-        task.setBoard(newBoard);
+        task.setTasklist(newTasklist);
         taskRepository.save(task);
     }
 }

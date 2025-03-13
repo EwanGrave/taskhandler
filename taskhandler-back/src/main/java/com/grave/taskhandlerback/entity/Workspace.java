@@ -20,12 +20,12 @@ public class Workspace {
     private List<User> users;
 
     @OneToMany(mappedBy = "workspace", cascade = CascadeType.ALL)
-    private List<Board> boards;
+    private List<Tasklist> tasklists;
 
-    public Workspace(Long idWorkspace, String name, List<Board> boards, List<User> users) {
+    public Workspace(Long idWorkspace, String name, List<Tasklist> tasklists, List<User> users) {
         this.idWorkspace = idWorkspace;
         this.name = name;
-        this.boards = boards;
+        this.tasklists = tasklists;
         this.users = users;
     }
 
@@ -39,8 +39,8 @@ public class Workspace {
         return name;
     }
 
-    public List<Board> getBoards() {
-        return boards;
+    public List<Tasklist> getTasklists() {
+        return tasklists;
     }
 
     public List<User> getUsers() {

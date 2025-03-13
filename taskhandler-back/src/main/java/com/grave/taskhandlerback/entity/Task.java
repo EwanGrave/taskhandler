@@ -17,8 +17,8 @@ public class Task {
     private List<CheckItem> checklist;
 
     @ManyToOne
-    @JoinColumn(name="id_board", nullable=false)
-    private Board board;
+    @JoinColumn(name="id_tasklist", nullable=false)
+    private Tasklist tasklist;
 
     public Task(Long idTask, String title, String description, List<CheckItem> checklist) {
         this.idTask = idTask;
@@ -45,8 +45,8 @@ public class Task {
         return checklist;
     }
 
-    public void setBoard(Board board) {
-        this.board = board;
+    public void setTasklist(Tasklist tasklist) {
+        this.tasklist = tasklist;
     }
 
     public void setTitle(String title) {

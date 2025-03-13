@@ -5,30 +5,30 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-public class Board {
+public class Tasklist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_board")
-    private Long idBoard;
+    @Column(name = "id_tasklist")
+    private Long idTasklist;
     private String name;
 
     @ManyToOne
     @JoinColumn(name="id_workspace", nullable=false)
     private Workspace workspace;
 
-    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "tasklist", cascade = CascadeType.ALL)
     private List<Task> tasks;
 
-    public Board(Long idBoard, String name, List<Task> tasks) {
-        this.idBoard = idBoard;
+    public Tasklist(Long idTasklist, String name, List<Task> tasks) {
+        this.idTasklist = idTasklist;
         this.name = name;
         this.tasks = tasks;
     }
 
-    public Board() {}
+    public Tasklist() {}
 
-    public Long getIdBoard() {
-        return idBoard;
+    public Long getIdTasklist() {
+        return idTasklist;
     }
 
     public String getName() {
