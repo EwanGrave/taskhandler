@@ -3,12 +3,12 @@ import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-homepage',
+  selector: 'app-boardspage',
   imports: [],
-  templateUrl: './homepage.component.html',
-  styleUrl: './homepage.component.css',
+  templateUrl: './boardspage.component.html',
+  styleUrl: './boardspage.component.css',
 })
-export class HomepageComponent {
+export class BoardspageComponent {
   loginService = inject(LoginService);
   router = inject(Router);
 
