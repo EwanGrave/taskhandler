@@ -3,6 +3,7 @@ package com.grave.taskhandlerback.controller;
 import com.grave.taskhandlerback.dto.user.UserDTO;
 import com.grave.taskhandlerback.dto.user.UserDTOWithPassword;
 import com.grave.taskhandlerback.service.UserService;
+import com.grave.taskhandlerback.utils.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -21,12 +22,12 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/create")
-    public ResponseEntity<String> createUser(@RequestBody UserDTOWithPassword user) {
+    public ResponseEntity<ApiResponse> createUser(@RequestBody UserDTOWithPassword user) {
         try {
             userService.createUser(user);
-            return ResponseEntity.status(HttpStatus.CREATED).body("User created");
+            return ResponseEntity.status(HttpStatus.CREATED).body(new ApiResponse("User created"));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while creating user : " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse("Error while creating user : " + e.getMessage()));
         }
     }
 

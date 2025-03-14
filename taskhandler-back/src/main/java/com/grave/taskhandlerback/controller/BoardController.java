@@ -2,6 +2,7 @@ package com.grave.taskhandlerback.controller;
 
 import com.grave.taskhandlerback.dto.BoardDTO;
 import com.grave.taskhandlerback.service.BoardService;
+import com.grave.taskhandlerback.utils.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -41,42 +42,42 @@ public class BoardController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<String> createBoard(@RequestBody BoardDTO boardDTO) {
+    public ResponseEntity<ApiResponse> createBoard(@RequestBody BoardDTO boardDTO) {
         try {
             boardService.createBoard(boardDTO);
-            return ResponseEntity.status(HttpStatus.CREATED).body("Board created");
+            return ResponseEntity.status(HttpStatus.CREATED).body(new ApiResponse("Board created"));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while creating Board : " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse("Error while creating Board : " + e.getMessage()));
         }
     }
 
     @PostMapping("/create/membership/{idBoard}/{idUser}")
-    public ResponseEntity<String> addMembership(@PathVariable int idBoard, @PathVariable int idUser) {
+    public ResponseEntity<ApiResponse> addMembership(@PathVariable int idBoard, @PathVariable int idUser) {
         try {
             boardService.addMembership(idBoard, idUser);
-            return ResponseEntity.status(HttpStatus.CREATED).body("Membership added");
+            return ResponseEntity.status(HttpStatus.CREATED).body(new ApiResponse("Membership added"));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while adding membership : " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse("Error while adding membership : " + e.getMessage()));
         }
     }
 
     @PostMapping("/delete/{idBoard}/{idUser}")
-    public ResponseEntity<String> deleteBoard(@PathVariable int idBoard, @PathVariable int idUser) {
+    public ResponseEntity<ApiResponse> deleteBoard(@PathVariable int idBoard, @PathVariable int idUser) {
         try {
             boardService.deleteBoard(idBoard, idUser);
-            return ResponseEntity.status(HttpStatus.CREATED).body("Board deleted");
+            return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse("Board deleted"));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while deleting board : " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse("Error while deleting board : " + e.getMessage()));
         }
     }
 
     @PostMapping("/update/{idUser}")
-    public ResponseEntity<String> updateBoard(@RequestBody BoardDTO board, @PathVariable int idUser) {
+    public ResponseEntity<ApiResponse> updateBoard(@RequestBody BoardDTO board, @PathVariable int idUser) {
         try {
             boardService.updateBoard(board, idUser);
-            return ResponseEntity.status(HttpStatus.CREATED).body("Board updated");
+            return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse("Board updated"));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while updating board : " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse("Error while updating board : " + e.getMessage()));
         }
     }
 }
