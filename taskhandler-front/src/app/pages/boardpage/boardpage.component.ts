@@ -3,10 +3,12 @@ import { BoardControllerService, BoardDTO, UserDTO } from '../../../../api';
 import { LoginService } from '../../services/login.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HeaderComponent } from '../../components/header/header/header.component';
+import { TasklistComponent } from '../../components/tasklist/tasklist.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-boardpage',
-  imports: [HeaderComponent],
+  imports: [HeaderComponent, TasklistComponent, MatButtonModule],
   templateUrl: './boardpage.component.html',
   styleUrl: './boardpage.component.css',
 })

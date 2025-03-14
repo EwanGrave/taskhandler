@@ -1,5 +1,19 @@
 <div id="content">
   <app-header [user]="user"></app-header>
 
-  <div class="board"></div>
+  <div class="board">
+    <div class="board-infos">
+      <div class="board-title">{{ board.name }}</div>
+    </div>
+
+    <div class="task-lists">
+      @for (list of board.tasklists; track $index) {
+      <app-tasklist [tasklist]="list"></app-tasklist>
+      }
+      <button mat-button>
+        <i class="material-icons">add</i>
+        <span>Ajouter une autre liste</span>
+      </button>
+    </div>
+  </div>
 </div>
