@@ -5,6 +5,15 @@
   padding-right: 20%;
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
+}
+
+.boards a {
+  text-decoration: none;
+}
+
+.boards a:hover {
+  background-color: #dfe4ee0f;
 }
 
 .board-card {
