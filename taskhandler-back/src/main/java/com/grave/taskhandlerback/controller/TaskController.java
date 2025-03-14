@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping(value = "/api/task", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -16,12 +17,12 @@ public class TaskController {
     private TaskService taskService;
 
     @PostMapping("/create/{idTasklist}")
-    public ResponseEntity<ApiResponse> createTask(@RequestBody TaskDTO task, @PathVariable int idTasklist) {
+    public ResponseEntity<TaskDTO> createTask(@RequestBody TaskDTO task, @PathVariable int idTasklist) {
         try {
-            taskService.createTask(task, idTasklist);
-            return ResponseEntity.status(HttpStatus.CREATED).body(new ApiResponse("Task created"));
+            TaskDTO newTask = taskService.createTask(task, idTasklist);
+            return ResponseEntity.status(HttpStatus.CREATED).body(newTask);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse("Error while creating task : " + e.getMessage()));
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error while creating task : " + e.getMessage());
         }
     }
 
@@ -36,12 +37,12 @@ public class TaskController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity<ApiResponse> updateTask(@RequestBody TaskDTO task) {
+    public ResponseEntity<TaskDTO> updateTask(@RequestBody TaskDTO task) {
         try {
-            taskService.updateTask(task);
-            return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse("Task updated"));
+            TaskDTO newTask = taskService.updateTask(task);
+            return ResponseEntity.status(HttpStatus.OK).body(newTask);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse("Error while updating task : " + e.getMessage()));
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error while updating task : " + e.getMessage());
         }
     }
 

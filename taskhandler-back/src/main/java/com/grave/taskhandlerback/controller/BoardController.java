@@ -72,12 +72,12 @@ public class BoardController {
     }
 
     @PostMapping("/update/{idUser}")
-    public ResponseEntity<ApiResponse> updateBoard(@RequestBody BoardDTO board, @PathVariable int idUser) {
+    public ResponseEntity<BoardDTO> updateBoard(@RequestBody BoardDTO board, @PathVariable int idUser) {
         try {
-            boardService.updateBoard(board, idUser);
-            return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse("Board updated"));
+            BoardDTO newBoard = boardService.updateBoard(board, idUser);
+            return ResponseEntity.status(HttpStatus.OK).body(newBoard);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse("Error while updating board : " + e.getMessage()));
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error while updating Board : " + e.getMessage());
         }
     }
 }

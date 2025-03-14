@@ -22,8 +22,8 @@ public class UserService {
         return user;
     }
 
-    public void createUser(UserDTOWithPassword user) {
-        userRepository.save(UserDTOWithPassword.convertToEntity(user));
+    public UserDTO createUser(UserDTOWithPassword user) {
+        return UserDTO.convertToDTO(userRepository.save(UserDTOWithPassword.convertToEntity(user)));
     }
 
     public Optional<UserDTO> logUser(UserDTOWithPassword userDTO) {

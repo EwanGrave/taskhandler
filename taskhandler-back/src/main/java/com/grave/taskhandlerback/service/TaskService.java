@@ -15,22 +15,22 @@ public class TaskService {
     @Autowired
     private TasklistService tasklistService;
 
-    public void createTask(TaskDTO taskDTO, int idTasklist) throws Exception {
+    public TaskDTO createTask(TaskDTO taskDTO, int idTasklist) throws Exception {
         Task task = TaskDTO.convertToEntity(taskDTO);
         Tasklist tasklist = tasklistService.getTasklistById(idTasklist);
         task.setTasklist(tasklist);
-        taskRepository.save(task);
+        return TaskDTO.convertToDTO(taskRepository.save(task));
     }
 
     public void deleteTask(int idTask) {
         taskRepository.deleteById(idTask);
     }
 
-    public void updateTask(TaskDTO taskDTO) throws Exception {
+    public TaskDTO updateTask(TaskDTO taskDTO) throws Exception {
         Task oldTask = this.getTaskById(taskDTO.getIdTask().intValue());
         oldTask.setTitle(taskDTO.getTitle());
         oldTask.setDescription(taskDTO.getDescription());
-        taskRepository.save(oldTask);
+        return TaskDTO.convertToDTO(taskRepository.save(oldTask));
     }
 
     public Task getTaskById(int id) throws Exception {

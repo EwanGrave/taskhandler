@@ -42,14 +42,14 @@ public class BoardService {
         boardRepository.deleteById(idBoard);
     }
 
-    public void updateBoard(BoardDTO boardDTO, int idUser) throws Exception {
+    public BoardDTO updateBoard(BoardDTO boardDTO, int idUser) throws Exception {
         User user = userService.getUserById(idUser);
         Board old = this.getBoardById(boardDTO.getIdBoard().intValue());
         if (old.getUsers().get(0) != user) {
             throw new Exception("User has not permission to update board");
         }
         old.setName(boardDTO.getName());
-        boardRepository.save(old);
+        return BoardDTO.convertToDTO(boardRepository.save(old));
     }
 
     public Board getBoardById(int id) throws Exception {

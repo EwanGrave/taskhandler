@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping(value = "/api/tasklist", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -16,12 +17,12 @@ public class TasklistController {
     private TasklistService tasklistService;
 
     @PostMapping("/create/{idBoard}")
-    public ResponseEntity<ApiResponse> createTasklist(@RequestBody TasklistDTO tasklist, @PathVariable int idBoard) {
+    public ResponseEntity<TasklistDTO> createTasklist(@RequestBody TasklistDTO tasklist, @PathVariable int idBoard) {
         try {
-            tasklistService.createTasklist(tasklist, idBoard);
-            return ResponseEntity.status(HttpStatus.CREATED).body(new ApiResponse("Tasklist created"));
+            TasklistDTO newTasklist = tasklistService.createTasklist(tasklist, idBoard);
+            return ResponseEntity.status(HttpStatus.CREATED).body(newTasklist);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse("Error while creating tasklist : " + e.getMessage()));
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error while creating tasklist : " + e.getMessage());
         }
     }
 
@@ -36,12 +37,12 @@ public class TasklistController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity<ApiResponse> updateTasklist(@RequestBody TasklistDTO tasklist) {
+    public ResponseEntity<TasklistDTO> updateTasklist(@RequestBody TasklistDTO tasklist) {
         try {
-            tasklistService.updateTasklist(tasklist);
-            return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse("Tasklist updated"));
+            TasklistDTO newTasklist = tasklistService.updateTasklist(tasklist);
+            return ResponseEntity.status(HttpStatus.OK).body(newTasklist);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse("Error while updating tasklist : " + e.getMessage()));
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error while updating tasklist : " + e.getMessage());
         }
     }
 }

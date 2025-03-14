@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping(value = "/api/checkitem", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -16,12 +17,12 @@ public class CheckitemController {
     private CheckitemService checkitemService;
 
     @PostMapping("/create/{idTask}")
-    public ResponseEntity<ApiResponse> createCheckitem(@RequestBody CheckItemDTO checkItem, @PathVariable int idTask) {
+    public ResponseEntity<CheckItemDTO> createCheckitem(@RequestBody CheckItemDTO checkItem, @PathVariable int idTask) {
         try {
-            checkitemService.createCheckitem(checkItem, idTask);
-            return ResponseEntity.status(HttpStatus.CREATED).body(new ApiResponse("Check item created"));
+            CheckItemDTO newCheckitem = checkitemService.createCheckitem(checkItem, idTask);
+            return ResponseEntity.status(HttpStatus.CREATED).body(newCheckitem);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse("Error while creating check item : " + e.getMessage()));
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error while creating check item : " + e.getMessage());
         }
     }
 
@@ -36,12 +37,12 @@ public class CheckitemController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity<ApiResponse> updateCheckitem(@RequestBody CheckItemDTO checkitem) {
+    public ResponseEntity<CheckItemDTO> updateCheckitem(@RequestBody CheckItemDTO checkitem) {
         try {
-            checkitemService.updateCheckitem(checkitem);
-            return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse("Check item updated"));
+            CheckItemDTO newCheckitem = checkitemService.updateCheckitem(checkitem);
+            return ResponseEntity.status(HttpStatus.OK).body(newCheckitem);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse("Error while updating check item : " + e.getMessage()));
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error while updating check item : " + e.getMessage());
         }
     }
 }

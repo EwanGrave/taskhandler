@@ -15,11 +15,11 @@ public class CheckitemService {
     @Autowired
     private TaskService taskService;
 
-    public void createCheckitem(CheckItemDTO checkItemDTO, int idTask) throws Exception {
+    public CheckItemDTO createCheckitem(CheckItemDTO checkItemDTO, int idTask) throws Exception {
         CheckItem checkitem = CheckItemDTO.convertToEntity(checkItemDTO);
         Task task = taskService.getTaskById(idTask);
         checkitem.setTask(task);
-        checkitemRepository.save(checkitem);
+        return CheckItemDTO.convertToDTO(checkitemRepository.save(checkitem));
     }
 
     public void deleteCheckitem(int idCheckitem) {
@@ -34,10 +34,10 @@ public class CheckitemService {
         return checkitem;
     }
 
-    public void updateCheckitem(CheckItemDTO checkitem) throws Exception {
+    public CheckItemDTO updateCheckitem(CheckItemDTO checkitem) throws Exception {
         CheckItem oldCheckitem = this.getCheckitemById(checkitem.getIdCheckitem().intValue());
         oldCheckitem.setChecked(checkitem.isChecked());
         oldCheckitem.setDescription(checkitem.getDescription());
-        checkitemRepository.save(oldCheckitem);
+        return CheckItemDTO.convertToDTO(checkitemRepository.save(oldCheckitem));
     }
 }
