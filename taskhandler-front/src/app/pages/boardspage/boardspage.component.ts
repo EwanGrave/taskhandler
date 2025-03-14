@@ -7,10 +7,19 @@ import { BoardControllerService, BoardDTO, UserDTO } from '../../../../api';
 import { CreateboardComponent } from '../../components/dialog/createboard/createboard.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-boardspage',
-  imports: [HeaderComponent, MatDialogModule, MatButtonModule, MatCardModule],
+  imports: [
+    HeaderComponent,
+    MatDialogModule,
+    MatButtonModule,
+    MatCardModule,
+    MatMenuModule,
+    MatIconModule,
+  ],
   templateUrl: './boardspage.component.html',
   styleUrl: './boardspage.component.css',
 })
@@ -35,5 +44,12 @@ export class WorkspacespageComponent {
 
   openCreateBoardDialog(): void {
     this.dialog.open(CreateboardComponent);
+  }
+
+  deleteBoard(id: number | undefined): void {
+    if (id && this.user?.idUser) {
+      this.boardsService.deleteBoard(id, this.user.idUser).subscribe();
+      this.boards = this.boards.filter((board) => board.idBoard !== id);
+    }
   }
 }
