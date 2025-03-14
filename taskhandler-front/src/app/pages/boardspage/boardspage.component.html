@@ -4,7 +4,7 @@
   <div class="boards">
     @for (board of boards; track $index) {
     <mat-card class="board-card" appearance="outlined">
-      <a href="#">
+      <a [routerLink]="['/', 'b', board.idBoard]">
         <mat-card-content class="board-card-content">
           <span>{{ board.name }}</span>
         </mat-card-content>

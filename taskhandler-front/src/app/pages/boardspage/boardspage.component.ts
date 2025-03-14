@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { LoginService } from '../../services/login.service';
 import { HeaderComponent } from '../../components/header/header/header.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
@@ -19,6 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatCardModule,
     MatMenuModule,
     MatIconModule,
+    RouterLink,
   ],
   templateUrl: './boardspage.component.html',
   styleUrl: './boardspage.component.css',

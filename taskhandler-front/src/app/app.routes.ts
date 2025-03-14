@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { LoginpageComponent } from './pages/loginpage/loginpage.component';
 import { RegisterpageComponent } from './pages/registerpage/registerpage.component';
 import { WorkspacespageComponent } from './pages/boardspage/boardspage.component';
+import { BoardpageComponent } from './pages/boardpage/boardpage.component';
 
 export const routes: Routes = [
   {
@@ -19,5 +20,9 @@ export const routes: Routes = [
   {
     path: 'signin',
     component: RegisterpageComponent,
+  },
+  {
+    path: 'b/:id',
+    component: BoardpageComponent,
   },
 ];
