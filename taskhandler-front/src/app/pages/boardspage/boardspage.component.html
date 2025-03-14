@@ -3,27 +3,27 @@
 
   <div class="boards">
     @for (board of boards; track $index) {
-    <a href="#">
-      <mat-card class="board-card" appearance="outlined">
+    <mat-card class="board-card" appearance="outlined">
+      <a href="#">
         <mat-card-content class="board-card-content">
           <span>{{ board.name }}</span>
-          @if (board.users?.at(0)?.idUser === user?.idUser) {
-          <button
-            mat-icon-button
-            [matMenuTriggerFor]="menu"
-            class="board-card-menu"
-          >
-            <mat-icon>more_vert</mat-icon>
-          </button>
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="deleteBoard(board.idBoard)">
-              <span>Supprimer</span>
-            </button>
-          </mat-menu>
-          }
         </mat-card-content>
-      </mat-card>
-    </a>
+      </a>
+      @if (board.users?.at(0)?.idUser === user?.idUser) {
+      <button
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        class="board-card-menu"
+      >
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="deleteBoard(board.idBoard)">
+          <span>Supprimer</span>
+        </button>
+      </mat-menu>
+      }
+    </mat-card>
 
     } @empty {
     <div>Aucun tableau</div>
