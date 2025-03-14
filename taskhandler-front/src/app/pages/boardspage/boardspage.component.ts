@@ -43,7 +43,7 @@ export class WorkspacespageComponent {
   }
 
   openCreateBoardDialog(): void {
-    this.dialog.open(CreateboardComponent);
+    this.dialog.open(CreateboardComponent, { data: this.boards });
   }
 
   deleteBoard(id: number | undefined): void {
