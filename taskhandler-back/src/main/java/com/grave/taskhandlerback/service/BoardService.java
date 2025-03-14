@@ -60,9 +60,9 @@ public class BoardService {
         return board;
     }
 
-    public void createBoard(BoardDTO boardDTO) {
+    public BoardDTO createBoard(BoardDTO boardDTO) {
         Board board = BoardDTO.convertToEntity(boardDTO);
-        boardRepository.save(board);
+        return BoardDTO.convertToDTO(boardRepository.save(board));
     }
 
     public void addMembership(int idBoard, int idUser) throws Exception {

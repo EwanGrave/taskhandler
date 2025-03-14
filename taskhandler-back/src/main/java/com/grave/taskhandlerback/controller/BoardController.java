@@ -42,12 +42,12 @@ public class BoardController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<ApiResponse> createBoard(@RequestBody BoardDTO boardDTO) {
+    public ResponseEntity<BoardDTO> createBoard(@RequestBody BoardDTO boardDTO) {
         try {
-            boardService.createBoard(boardDTO);
-            return ResponseEntity.status(HttpStatus.CREATED).body(new ApiResponse("Board created"));
+            BoardDTO newBoard = boardService.createBoard(boardDTO);
+            return ResponseEntity.status(HttpStatus.CREATED).body(newBoard);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse("Error while creating Board : " + e.getMessage()));
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error while creating Board : " + e.getMessage());
         }
     }
 

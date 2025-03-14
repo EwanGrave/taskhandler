@@ -50,8 +50,9 @@ export class CreateboardComponent {
         users: [user],
         tasklists: [],
       };
-      this.boardService.createBoard(board).subscribe();
-      this.boards.push(board);
+      this.boardService.createBoard(board).subscribe((newBoard) => {
+        this.boards.push(newBoard);
+      });
       this.dialogRef.close();
     }
   }
