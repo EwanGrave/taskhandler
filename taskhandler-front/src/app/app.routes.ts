@@ -9,7 +9,7 @@ export const routes: Routes = [
     component: LoginpageComponent,
   },
   {
-    path: 'u/:username/boards',
+    path: 'u/boards',
     component: WorkspacespageComponent,
   },
   {
