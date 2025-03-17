@@ -1,0 +1,11 @@
+.task-dialog {
+  background-color: #4e5a63;
+  color: rgb(199, 199, 199);
+  border-radius: 5px;
+  padding: 15px;
+}
+
+.task-title {
+  font-size: 17px;
+  font-weight: 500;
+}

@@ -1,5 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { TaskDTO } from '../../../../api';
+import { MatDialog } from '@angular/material/dialog';
+import { TaskdialogComponent } from '../dialog/taskdialog/taskdialog.component';
 
 @Component({
   selector: 'app-task',
@@ -9,4 +11,9 @@ import { TaskDTO } from '../../../../api';
 })
 export class TaskComponent {
   @Input({ required: true }) task!: TaskDTO;
+  readonly dialog = inject(MatDialog);
+
+  onClick(): void {
+    this.dialog.open(TaskdialogComponent, { data: this.task });
+  }
 }
