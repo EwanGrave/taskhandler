@@ -9,11 +9,28 @@
     <div class="task-lists">
       @for (list of board.tasklists; track $index) {
       <app-tasklist [tasklist]="list"></app-tasklist>
-      }
-      <button mat-button>
+      } @if (hideNewListForm) {
+      <button mat-button (click)="setHideNewListForm(false)">
         <i class="material-icons">add</i>
         <span>Ajouter une autre liste</span>
       </button>
+      } @else {
+      <form class="create-tasklist-form" [formGroup]="boardForm">
+        <input
+          matInput
+          type="text"
+          placeholder="Nom de liste"
+          formControlName="name"
+        />
+
+        <div class="create-tasklist-form-btn">
+          <button type="submit" (click)="createTasklist()">Valider</button>
+          <button mat-button (click)="setHideNewListForm(true)">
+            <i class="material-icons">cancel</i>
+          </button>
+        </div>
+      </form>
+      }
     </div>
   </div>
 </div>

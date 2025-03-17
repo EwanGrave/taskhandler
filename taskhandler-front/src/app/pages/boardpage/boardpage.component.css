@@ -11,3 +11,41 @@
   display: flex;
   flex-direction: row;
 }
+
+.create-tasklist-form input {
+  background-color: #22272b;
+  border: 0px;
+  border: 0.5px solid rgb(218, 218, 218);
+  padding: 7px;
+  color: rgb(199, 199, 199);
+  border-radius: 4px;
+  font-size: 15px;
+}
+
+.create-tasklist-form {
+  background-color: black;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 2px #091e4240;
+}
+
+.create-tasklist-form-btn {
+  margin-top: 5px;
+}
+
+.create-tasklist-form-btn button:first-of-type {
+  font-size: 15px;
+  background-color: #579dff;
+  border: 0px;
+  padding: 8px 15px 8px 15px;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.create-tasklist-form-btn button:first-of-type:hover {
+  background-color: #88baff;
+}
+
+.create-tasklist-form-btn button:last-of-type {
+  color: rgb(199, 199, 199);
+}
