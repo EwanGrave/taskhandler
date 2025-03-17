@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { TaskControllerService, TaskDTO, TasklistDTO } from '../../../../api';
 import { TaskComponent } from '../task/task.component';
 import { MatMenuModule } from '@angular/material/menu';
@@ -27,6 +27,7 @@ export class TasklistComponent {
   taskService = inject(TaskControllerService);
 
   @Input({ required: true }) tasklist!: TasklistDTO;
+  @Output() onTasklistDelete = new EventEmitter<number>();
   hideNewTaskForm: boolean = true;
 
   taskForm = new FormGroup({
@@ -54,6 +55,12 @@ export class TasklistComponent {
         .subscribe((newTask) => this.tasklist.tasks?.push(newTask));
 
       this.setHideNewTaskForm(true);
+    }
+  }
+
+  deleteTasklist(): void {
+    if (this.tasklist.idTasklist) {
+      this.onTasklistDelete.emit(this.tasklist.idTasklist);
     }
   }
 }

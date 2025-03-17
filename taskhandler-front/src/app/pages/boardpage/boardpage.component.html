@@ -8,7 +8,10 @@
 
     <div class="task-lists">
       @for (list of board.tasklists; track $index) {
-      <app-tasklist [tasklist]="list"></app-tasklist>
+      <app-tasklist
+        (onTasklistDelete)="deleteTaskList($event)"
+        [tasklist]="list"
+      ></app-tasklist>
       } @if (hideNewListForm) {
       <button mat-button (click)="setHideNewListForm(false)">
         <i class="material-icons">add</i>

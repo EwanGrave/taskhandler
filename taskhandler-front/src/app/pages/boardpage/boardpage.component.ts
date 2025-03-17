@@ -86,4 +86,11 @@ export class BoardpageComponent {
       this.setHideNewListForm(true);
     }
   }
+
+  deleteTaskList(idTasklist: number) {
+    this.tasklistService.deleteTasklist(idTasklist).subscribe();
+    this.board.tasklists = this.board.tasklists?.filter(
+      (tasklist) => tasklist.idTasklist !== idTasklist
+    );
+  }
 }
