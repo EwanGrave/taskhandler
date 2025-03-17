@@ -84,6 +84,7 @@ export class BoardpageComponent {
         .subscribe((newTasklist) => this.board.tasklists?.push(newTasklist));
 
       this.setHideNewListForm(true);
+      this.tasklistForm.reset();
     }
   }
 

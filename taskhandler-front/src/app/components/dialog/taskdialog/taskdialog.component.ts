@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { MatButton } from '@angular/material/button';
 import {
   MAT_DIALOG_DATA,
   MatDialogModule,
@@ -9,7 +8,7 @@ import { TaskControllerService, TaskDTO } from '../../../../../api';
 
 @Component({
   selector: 'app-taskdialog',
-  imports: [MatDialogModule, MatButton],
+  imports: [MatDialogModule],
   templateUrl: './taskdialog.component.html',
   styleUrl: './taskdialog.component.css',
 })

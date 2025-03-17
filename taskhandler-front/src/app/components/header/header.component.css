@@ -10,9 +10,16 @@
   padding-left: 40px;
 }
 
+.header-title img {
+  width: 35px;
+}
+
 .header-title a {
   text-decoration: none;
   color: white;
+  display: flex;
+  gap: 5px;
+  align-items: center;
 }
 
 .user-menu button {
