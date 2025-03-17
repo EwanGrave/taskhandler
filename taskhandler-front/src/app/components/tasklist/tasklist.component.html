@@ -1,11 +1,45 @@
 <div class="task-list">
-  <div class="task-list-title">
-    {{ tasklist.name }}
+  <div class="task-list-header">
+    <span>{{ tasklist.name }}</span>
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="menu"
+      class="tasklist-card-menu"
+    >
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="setHideNewTaskForm(false)">
+        <span>Ajouter une tâche</span>
+      </button>
+      <button mat-menu-item>
+        <span>Supprimer</span>
+      </button>
+    </mat-menu>
   </div>
 
-  @for (task of tasklist.tasks; track $index) {
-  <app-task [task]="task"></app-task>
-  }@empty {
-  <div>Aucune tâche</div>
-  }
+  <div class="tasks">
+    @if (!hideNewTaskForm) {
+    <form class="create-task-form" [formGroup]="taskForm">
+      <input
+        matInput
+        type="text"
+        placeholder="Nom de la tâche"
+        formControlName="name"
+      />
+
+      <div class="create-task-form-btn">
+        <button type="submit" (click)="createTask()">Valider</button>
+        <button mat-button (click)="setHideNewTaskForm(true)">
+          <i class="material-icons">cancel</i>
+        </button>
+      </div>
+    </form>
+
+    } @for (task of tasklist.tasks; track $index) {
+    <app-task [task]="task"></app-task>
+    }@empty {
+    <div>Aucune tâche</div>
+    }
+  </div>
 </div>

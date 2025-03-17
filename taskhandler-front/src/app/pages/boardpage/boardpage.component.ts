@@ -45,7 +45,7 @@ export class BoardpageComponent {
   user!: UserDTO | null;
   hideNewListForm: boolean = true;
 
-  boardForm = new FormGroup({
+  tasklistForm = new FormGroup({
     name: new FormControl<string>('', [
       Validators.required,
       Validators.minLength(3),
@@ -73,9 +73,9 @@ export class BoardpageComponent {
   }
 
   createTasklist(): void {
-    if (this.boardForm.valid) {
+    if (this.tasklistForm.valid) {
       const tasklist: TasklistDTO = {
-        name: this.boardForm.value.name ?? '',
+        name: this.tasklistForm.value.name ?? '',
         tasks: [],
       };
 
