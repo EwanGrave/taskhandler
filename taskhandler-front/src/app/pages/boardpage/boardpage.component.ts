@@ -8,7 +8,6 @@ import {
 } from '../../../../api';
 import { LoginService } from '../../services/login.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HeaderComponent } from '../../components/header/header/header.component';
 import { TasklistComponent } from '../../components/tasklist/tasklist.component';
 import { MatButtonModule } from '@angular/material/button';
 import {
@@ -19,6 +18,7 @@ import {
 } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { HeaderComponent } from '../../components/header/header.component';
 
 @Component({
   selector: 'app-boardpage',

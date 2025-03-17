@@ -1,8 +1,8 @@
 import { Component, inject, Input } from '@angular/core';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
-import { UserDTO } from '../../../../../api';
-import { LoginService } from '../../../services/login.service';
+import { UserDTO } from '../../../../api';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-header',

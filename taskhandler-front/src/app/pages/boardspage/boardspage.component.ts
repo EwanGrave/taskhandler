@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { LoginService } from '../../services/login.service';
-import { HeaderComponent } from '../../components/header/header/header.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { BoardControllerService, BoardDTO, UserDTO } from '../../../../api';
 import { CreateboardComponent } from '../../components/dialog/createboard/createboard.component';
@@ -9,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
+import { HeaderComponent } from '../../components/header/header.component';
 
 @Component({
   selector: 'app-boardspage',
