@@ -37,7 +37,12 @@
     </form>
 
     } @for (task of tasklist.tasks; track $index) {
-    <app-task [task]="task"></app-task>
+    <app-task
+      [dndDraggable]="{ task: task, listId: tasklist.idTasklist }"
+      [dndEffectAllowed]="draggable.effectAllowed"
+      [dndDisableIf]="draggable.disable"
+      [task]="task"
+    ></app-task>
     }@empty {
     <div>Aucune tâche</div>
     }

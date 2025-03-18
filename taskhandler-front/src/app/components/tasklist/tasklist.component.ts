@@ -10,6 +10,7 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { DndModule, EffectAllowed } from 'ngx-drag-drop';
 
 @Component({
   selector: 'app-tasklist',
@@ -19,6 +20,7 @@ import {
     MatIconModule,
     MatButtonModule,
     ReactiveFormsModule,
+    DndModule,
   ],
   templateUrl: './tasklist.component.html',
   styleUrl: './tasklist.component.css',
@@ -37,6 +39,12 @@ export class TasklistComponent {
       Validators.maxLength(15),
     ]),
   });
+
+  draggable = {
+    effectAllowed: 'all' as EffectAllowed,
+    disable: false,
+    handle: false,
+  };
 
   setHideNewTaskForm(value: boolean): void {
     this.hideNewTaskForm = value;

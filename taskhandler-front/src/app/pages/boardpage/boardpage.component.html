@@ -9,6 +9,9 @@
     <div class="task-lists">
       @for (list of board.tasklists; track $index) {
       <app-tasklist
+        dndDropzone
+        dndEffectAllowed="move"
+        (dndDrop)="onDrop($event, list)"
         (onTasklistDelete)="deleteTaskList($event)"
         [tasklist]="list"
       ></app-tasklist>

@@ -2,6 +2,8 @@ import { Component, inject } from '@angular/core';
 import {
   BoardControllerService,
   BoardDTO,
+  TaskControllerService,
+  TaskDTO,
   TasklistControllerService,
   TasklistDTO,
   UserDTO,
@@ -19,6 +21,7 @@ import {
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { HeaderComponent } from '../../components/header/header.component';
+import { DndDropEvent, DndModule } from 'ngx-drag-drop';
 
 @Component({
   selector: 'app-boardpage',
@@ -29,6 +32,7 @@ import { HeaderComponent } from '../../components/header/header.component';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
+    DndModule,
   ],
   templateUrl: './boardpage.component.html',
   styleUrl: './boardpage.component.css',
@@ -36,6 +40,7 @@ import { HeaderComponent } from '../../components/header/header.component';
 export class BoardpageComponent {
   boardService = inject(BoardControllerService);
   tasklistService = inject(TasklistControllerService);
+  taskService = inject(TaskControllerService);
   loginService = inject(LoginService);
   router = inject(Router);
   route = inject(ActivatedRoute);
@@ -93,5 +98,19 @@ export class BoardpageComponent {
     this.board.tasklists = this.board.tasklists?.filter(
       (tasklist) => tasklist.idTasklist !== idTasklist
     );
+  }
+
+  onDrop(event: DndDropEvent, list: TasklistDTO) {
+    const task: TaskDTO = event.data.task;
+    const oldList: TasklistDTO =
+      this.board.tasklists?.find((l) => l.idTasklist === event.data.listId) ??
+      {};
+
+    if (!list.tasks?.includes(task) && list.idTasklist) {
+      this.taskService.changeTasklist(list.idTasklist, task).subscribe();
+
+      oldList.tasks = oldList.tasks?.filter((t) => t.idTask !== task.idTask);
+      list.tasks?.push(task);
+    }
   }
 }
