@@ -1,6 +1,7 @@
 package com.grave.taskhandlerback.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.util.List;
 
@@ -12,6 +13,8 @@ public class Task {
     private Long idTask;
     private String title;
     private String description;
+    @ColumnDefault("false")
+    private boolean done;
 
     @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
     private List<CheckItem> checklist;
@@ -20,11 +23,12 @@ public class Task {
     @JoinColumn(name="id_tasklist", nullable=false)
     private Tasklist tasklist;
 
-    public Task(Long idTask, String title, String description, List<CheckItem> checklist) {
+    public Task(Long idTask, String title, String description, List<CheckItem> checklist, boolean done) {
         this.idTask = idTask;
         this.title = title;
         this.description = description;
         this.checklist = checklist;
+        this.done = done;
     }
 
     public Task() {}
@@ -55,5 +59,13 @@ public class Task {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public boolean isDone() {
+        return done;
+    }
+
+    public void setDone(boolean done) {
+        this.done = done;
     }
 }

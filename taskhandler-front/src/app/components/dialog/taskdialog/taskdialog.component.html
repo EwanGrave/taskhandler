@@ -1,7 +1,11 @@
 <div class="task-dialog">
   <div class="task-dialog-content">
     <div class="task-dialog-header">
-      <mat-checkbox matTooltip="Marquer comme terminé"></mat-checkbox>
+      <mat-checkbox
+        [checked]="task.done"
+        (change)="setTaskDone($event.checked)"
+        matTooltip="Marquer comme terminé"
+      ></mat-checkbox>
       <div class="task-title">{{ task.title }}</div>
     </div>
 

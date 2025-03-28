@@ -9,13 +9,15 @@ public class TaskDTO {
     private Long idTask;
     private String title;
     private String description;
+    private boolean done;
     private List<CheckItemDTO> checkitems;
 
-    public TaskDTO(Long idTask, String title, String description, List<CheckItemDTO> checkitems) {
+    public TaskDTO(Long idTask, String title, String description, List<CheckItemDTO> checkitems, boolean done) {
         this.idTask = idTask;
         this.title = title;
         this.description = description;
         this.checkitems = checkitems;
+        this.done = done;
     }
 
     public Long getIdTask() {
@@ -34,6 +36,10 @@ public class TaskDTO {
         return checkitems;
     }
 
+    public boolean isDone() {
+        return done;
+    }
+
     public void addCheckitem(CheckItemDTO checkitem) {
         this.checkitems.add(checkitem);
     }
@@ -43,7 +49,8 @@ public class TaskDTO {
                 task.getIdTask(),
                 task.getTitle(),
                 task.getDescription(),
-                task.getChecklist().stream().map(CheckItemDTO::convertToDTO).collect(Collectors.toList())
+                task.getChecklist().stream().map(CheckItemDTO::convertToDTO).collect(Collectors.toList()),
+                task.isDone()
         );
     }
 
@@ -52,7 +59,8 @@ public class TaskDTO {
                 task.getIdTask(),
                 task.getTitle(),
                 task.getDescription(),
-                task.getCheckitems().stream().map(CheckItemDTO::convertToEntity).collect(Collectors.toList())
+                task.getCheckitems().stream().map(CheckItemDTO::convertToEntity).collect(Collectors.toList()),
+                task.isDone()
         );
     }
 }

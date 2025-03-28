@@ -24,4 +24,16 @@ export class TaskdialogComponent {
   readonly dialogRef = inject(MatDialogRef<TaskdialogComponent>);
   task = inject<TaskDTO>(MAT_DIALOG_DATA);
   taskService = inject(TaskControllerService);
+
+  setTaskDone(done: boolean): void {
+    const newTask: TaskDTO = {
+      idTask: this.task.idTask,
+      title: this.task.title,
+      description: this.task.description,
+      done: done,
+      checkitems: this.task.checkitems,
+    };
+    this.taskService.updateTask(newTask).subscribe();
+    this.task.done = done;
+  }
 }

@@ -30,6 +30,7 @@ public class TaskService {
         Task oldTask = this.getTaskById(taskDTO.getIdTask().intValue());
         oldTask.setTitle(taskDTO.getTitle());
         oldTask.setDescription(taskDTO.getDescription());
+        oldTask.setDone(taskDTO.isDone());
         return TaskDTO.convertToDTO(taskRepository.save(oldTask));
     }
 

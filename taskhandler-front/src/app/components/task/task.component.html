@@ -1,5 +1,10 @@
 <div class="task-card" (click)="onClick()">
-  <div class="task-title">
-    {{ task.title }}
+  <div class="task-header">
+    @if (task.done) {
+    <i class="material-icons">check_circle_outline</i>
+    }
+    <div class="task-title">
+      {{ task.title }}
+    </div>
   </div>
 </div>

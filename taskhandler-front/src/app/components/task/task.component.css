@@ -1,9 +1,16 @@
 .task-card {
   background-color: #22272b;
-  padding: 12px 20px 12px 20px;
+  padding: 12px 10px 12px 10px;
   border-radius: 5px;
   font-size: 14px;
   cursor: pointer;
+}
+
+.task-header {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
 }
 
 .task-card:hover {
