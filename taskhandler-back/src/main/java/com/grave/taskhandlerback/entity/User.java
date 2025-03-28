@@ -18,6 +18,9 @@ public class User {
     @ManyToMany(mappedBy = "users")
     private List<Board> boards;
 
+    @ManyToMany(mappedBy = "users")
+    private List<Task> tasks;
+
     public User(Long idUser, String username, String password) {
         this.idUser = idUser;
         this.username = username;

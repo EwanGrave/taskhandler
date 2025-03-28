@@ -22,17 +22,24 @@ public class Task {
     @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
     private List<CheckItem> checklist;
 
+    @ManyToMany
+    @JoinTable(
+            joinColumns = @JoinColumn(name = "id_task"),
+            inverseJoinColumns = @JoinColumn(name = "id_user"))
+    private List<User> users;
+
     @ManyToOne
     @JoinColumn(name="id_tasklist", nullable=false)
     private Tasklist tasklist;
 
-    public Task(Long idTask, String title, String description, List<CheckItem> checklist, boolean done, Date dueDate) {
+    public Task(Long idTask, String title, String description, List<CheckItem> checklist, boolean done, Date dueDate, List<User> users) {
         this.idTask = idTask;
         this.title = title;
         this.description = description;
         this.checklist = checklist;
         this.done = done;
         this.dueDate = dueDate;
+        this.users = users;
     }
 
     public Task() {}
@@ -57,6 +64,10 @@ public class Task {
         return dueDate;
     }
 
+    public List<User> getUsers() {
+        return this.users;
+    }
+
     public void setTasklist(Tasklist tasklist) {
         this.tasklist = tasklist;
     }
@@ -79,5 +90,9 @@ public class Task {
 
     public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
+    }
+
+    public void addUser(User user) {
+        this.users.add(user);
     }
 }
