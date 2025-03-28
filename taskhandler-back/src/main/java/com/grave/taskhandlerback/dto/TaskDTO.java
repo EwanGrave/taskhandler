@@ -2,6 +2,7 @@ package com.grave.taskhandlerback.dto;
 
 import com.grave.taskhandlerback.entity.Task;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,14 +11,16 @@ public class TaskDTO {
     private String title;
     private String description;
     private boolean done;
+    private Date dueDate;
     private List<CheckItemDTO> checkitems;
 
-    public TaskDTO(Long idTask, String title, String description, List<CheckItemDTO> checkitems, boolean done) {
+    public TaskDTO(Long idTask, String title, String description, List<CheckItemDTO> checkitems, boolean done, Date dueDate) {
         this.idTask = idTask;
         this.title = title;
         this.description = description;
         this.checkitems = checkitems;
         this.done = done;
+        this.dueDate = dueDate;
     }
 
     public Long getIdTask() {
@@ -40,6 +43,10 @@ public class TaskDTO {
         return done;
     }
 
+    public Date getDueDate() {
+        return dueDate;
+    }
+
     public void addCheckitem(CheckItemDTO checkitem) {
         this.checkitems.add(checkitem);
     }
@@ -50,7 +57,8 @@ public class TaskDTO {
                 task.getTitle(),
                 task.getDescription(),
                 task.getChecklist().stream().map(CheckItemDTO::convertToDTO).collect(Collectors.toList()),
-                task.isDone()
+                task.isDone(),
+                task.getDueDate()
         );
     }
 
@@ -60,7 +68,8 @@ public class TaskDTO {
                 task.getTitle(),
                 task.getDescription(),
                 task.getCheckitems().stream().map(CheckItemDTO::convertToEntity).collect(Collectors.toList()),
-                task.isDone()
+                task.isDone(),
+                task.getDueDate()
         );
     }
 }

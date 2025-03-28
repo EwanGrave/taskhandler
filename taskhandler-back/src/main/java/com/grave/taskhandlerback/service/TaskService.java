@@ -31,6 +31,7 @@ public class TaskService {
         oldTask.setTitle(taskDTO.getTitle());
         oldTask.setDescription(taskDTO.getDescription());
         oldTask.setDone(taskDTO.isDone());
+        oldTask.setDueDate(taskDTO.getDueDate());
         return TaskDTO.convertToDTO(taskRepository.save(oldTask));
     }
 

@@ -3,6 +3,7 @@ package com.grave.taskhandlerback.entity;
 import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
 
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -15,6 +16,8 @@ public class Task {
     private String description;
     @ColumnDefault("false")
     private boolean done;
+    @Column()
+    private Date dueDate;
 
     @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
     private List<CheckItem> checklist;
@@ -23,12 +26,13 @@ public class Task {
     @JoinColumn(name="id_tasklist", nullable=false)
     private Tasklist tasklist;
 
-    public Task(Long idTask, String title, String description, List<CheckItem> checklist, boolean done) {
+    public Task(Long idTask, String title, String description, List<CheckItem> checklist, boolean done, Date dueDate) {
         this.idTask = idTask;
         this.title = title;
         this.description = description;
         this.checklist = checklist;
         this.done = done;
+        this.dueDate = dueDate;
     }
 
     public Task() {}
@@ -49,6 +53,10 @@ public class Task {
         return checklist;
     }
 
+    public Date getDueDate() {
+        return dueDate;
+    }
+
     public void setTasklist(Tasklist tasklist) {
         this.tasklist = tasklist;
     }
@@ -67,5 +75,9 @@ public class Task {
 
     public void setDone(boolean done) {
         this.done = done;
+    }
+
+    public void setDueDate(Date dueDate) {
+        this.dueDate = dueDate;
     }
 }
