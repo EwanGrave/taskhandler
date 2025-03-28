@@ -5,10 +5,18 @@ import {
   MatDialogRef,
 } from '@angular/material/dialog';
 import { TaskControllerService, TaskDTO } from '../../../../../api';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-taskdialog',
-  imports: [MatDialogModule],
+  imports: [
+    MatDialogModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatTooltipModule,
+  ],
   templateUrl: './taskdialog.component.html',
   styleUrl: './taskdialog.component.css',
 })

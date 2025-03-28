@@ -14,6 +14,9 @@ export class TaskComponent {
   readonly dialog = inject(MatDialog);
 
   onClick(): void {
-    this.dialog.open(TaskdialogComponent, { data: this.task });
+    this.dialog.open(TaskdialogComponent, {
+      data: this.task,
+      maxWidth: '100%',
+    });
   }
 }

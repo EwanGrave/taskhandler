@@ -9,6 +9,10 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+textarea {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
 .error-msg {
   color: rgb(219, 0, 0);
 }

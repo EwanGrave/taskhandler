@@ -1,3 +1,27 @@
 <div class="task-dialog">
-  <div class="task-title">{{ task.title }}</div>
+  <div class="task-dialog-content">
+    <div class="task-dialog-header">
+      <mat-checkbox matTooltip="Marquer comme terminé"></mat-checkbox>
+      <div class="task-title">{{ task.title }}</div>
+    </div>
+
+    <div class="description">
+      <div class="task-label-title">Description</div>
+      <textarea
+        type="text"
+        disabled
+        [value]="task.description"
+        placeholder="Ajoutez une description"
+      ></textarea>
+    </div>
+  </div>
+
+  <div class="right-panel">
+    <div>Actions</div>
+    <button mat-flat-button>Membre</button>
+    <button mat-flat-button>Tag</button>
+    <button mat-flat-button>Checklist</button>
+    <button mat-flat-button>Date</button>
+    <button mat-flat-button>Supprimer</button>
+  </div>
 </div>
