@@ -3,6 +3,7 @@ package com.grave.taskhandlerback.service;
 import com.grave.taskhandlerback.dto.TaskDTO;
 import com.grave.taskhandlerback.entity.Task;
 import com.grave.taskhandlerback.entity.Tasklist;
+import com.grave.taskhandlerback.entity.User;
 import com.grave.taskhandlerback.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,9 @@ public class TaskService {
 
     @Autowired
     private TasklistService tasklistService;
+
+    @Autowired
+    private UserService userService;
 
     public TaskDTO createTask(TaskDTO taskDTO, int idTasklist) throws Exception {
         Task task = TaskDTO.convertToEntity(taskDTO);
@@ -52,6 +56,30 @@ public class TaskService {
         }
 
         task.setTasklist(newTasklist);
+        taskRepository.save(task);
+    }
+
+    public void addUser(int idTask, int idUser) throws Exception {
+        Task task = this.getTaskById(idTask);
+        User user = userService.getUserById(idUser);
+
+        if (task.getUsers().contains(user)) {
+            throw new Exception("User " + user.getIdUser() + " is already in the list");
+        }
+
+        task.addUser(user);
+        taskRepository.save(task);
+    }
+
+    public void removeUser(int idTask, int idUser) throws Exception {
+        Task task = this.getTaskById(idTask);
+        User user = userService.getUserById(idUser);
+
+        if (!task.getUsers().contains(user)) {
+            throw new Exception("User " + user.getIdUser() + " is not in the list");
+        }
+
+        task.removeUser(user);
         taskRepository.save(task);
     }
 }

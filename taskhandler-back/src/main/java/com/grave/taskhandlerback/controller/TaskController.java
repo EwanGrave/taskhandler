@@ -55,4 +55,24 @@ public class TaskController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse("Error while updating task list : " + e.getMessage()));
         }
     }
+
+    @PostMapping("/add_user/{idTask}/{idUser}")
+    public ResponseEntity<ApiResponse> addUser(@PathVariable int idTask, @PathVariable int idUser) {
+        try {
+            taskService.addUser(idTask, idUser);
+            return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse("User added to task"));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse("Error while adding user to task : " + e.getMessage()));
+        }
+    }
+
+    @PostMapping("/remove_user/{idTask}/{idUser}")
+    public ResponseEntity<ApiResponse> removeUser(@PathVariable int idTask, @PathVariable int idUser) {
+        try {
+            taskService.removeUser(idTask, idUser);
+            return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse("User removed from task"));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse("Error while removing user from task : " + e.getMessage()));
+        }
+    }
 }
