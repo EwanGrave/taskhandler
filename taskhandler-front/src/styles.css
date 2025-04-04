@@ -9,7 +9,8 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-textarea {
+textarea,
+input {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 

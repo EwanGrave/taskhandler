@@ -7,4 +7,11 @@
       {{ task.title }}
     </div>
   </div>
+
+  @if (task.dueDate) {
+  <div class="due-date">
+    <i class="material-icons">access_time</i>
+    {{ task.dueDate | date : "dd MMMM" }}
+  </div>
+  }
 </div>

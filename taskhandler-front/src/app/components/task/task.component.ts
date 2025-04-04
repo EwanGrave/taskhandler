@@ -2,10 +2,11 @@ import { Component, inject, Input } from '@angular/core';
 import { TaskDTO } from '../../../../api';
 import { MatDialog } from '@angular/material/dialog';
 import { TaskdialogComponent } from '../dialog/taskdialog/taskdialog.component';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-task',
-  imports: [],
+  imports: [DatePipe],
   templateUrl: './task.component.html',
   styleUrl: './task.component.css',
 })
