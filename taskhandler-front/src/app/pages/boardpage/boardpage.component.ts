@@ -22,6 +22,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { HeaderComponent } from '../../components/header/header.component';
 import { DndDropEvent, DndModule } from 'ngx-drag-drop';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-boardpage',
@@ -33,6 +34,7 @@ import { DndDropEvent, DndModule } from 'ngx-drag-drop';
     MatFormFieldModule,
     MatInputModule,
     DndModule,
+    MatTooltipModule,
   ],
   templateUrl: './boardpage.component.html',
   styleUrl: './boardpage.component.css',

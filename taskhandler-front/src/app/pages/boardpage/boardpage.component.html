@@ -4,6 +4,14 @@
   <div class="board">
     <div class="board-infos">
       <div class="board-title">{{ board.name }}</div>
+
+      <div class="board-users">
+        @for (user of board.users; track $index) {
+        <span [matTooltip]="user.username">
+          {{ user?.username?.substr(0, 2)?.toUpperCase() }}
+        </span>
+        }
+      </div>
     </div>
 
     <div class="task-lists">
