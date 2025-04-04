@@ -25,6 +25,8 @@ import { DndDropEvent, DndModule } from 'ngx-drag-drop';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialog } from '@angular/material/dialog';
 import { AdduserdialogComponent } from '../../components/dialog/adduserdialog/adduserdialog.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
   selector: 'app-boardpage',
@@ -37,6 +39,8 @@ import { AdduserdialogComponent } from '../../components/dialog/adduserdialog/ad
     MatInputModule,
     DndModule,
     MatTooltipModule,
+    MatMenuModule,
+    MatIconModule,
   ],
   templateUrl: './boardpage.component.html',
   styleUrl: './boardpage.component.css',
@@ -54,8 +58,17 @@ export class BoardpageComponent {
   board!: BoardDTO;
   user!: UserDTO | null;
   hideNewListForm: boolean = true;
+  hideUpdateBoardForm: boolean = true;
 
   tasklistForm = new FormGroup({
+    name: new FormControl<string>('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(15),
+    ]),
+  });
+
+  boardForm = new FormGroup({
     name: new FormControl<string>('', [
       Validators.required,
       Validators.minLength(3),
@@ -80,6 +93,19 @@ export class BoardpageComponent {
 
   setHideNewListForm(value: boolean): void {
     this.hideNewListForm = value;
+  }
+
+  setHideUpdateBoardForm(value: boolean): void {
+    this.hideUpdateBoardForm = value;
+    this.boardForm.setValue({ name: this.board.name ?? '' });
+  }
+
+  updateBoard(): void {
+    if (this.boardForm.valid && this.user?.idUser) {
+      this.board.name = this.boardForm.value.name ?? '';
+      this.boardService.updateBoard(this.user.idUser, this.board).subscribe();
+      this.setHideUpdateBoardForm(true);
+    }
   }
 
   createTasklist(): void {

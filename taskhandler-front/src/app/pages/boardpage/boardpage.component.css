@@ -36,7 +36,8 @@
   gap: 20px;
 }
 
-.create-tasklist-form input {
+.create-tasklist-form input,
+.update-board-form input {
   background-color: #22272b;
   border: 0px;
   border: 0.5px solid rgb(218, 218, 218);
@@ -58,7 +59,8 @@
   margin-top: 5px;
 }
 
-.create-tasklist-form-btn button:first-of-type {
+.create-tasklist-form-btn button:first-of-type,
+.update-board-form button {
   font-size: 15px;
   background-color: #579dff;
   border: 0px;

@@ -3,7 +3,16 @@
 
   <div class="board">
     <div class="board-infos">
-      <div class="board-title">{{ board.name }}</div>
+      <div class="board-title">
+        @if (hideUpdateBoardForm) {
+        {{ board.name }}
+        } @else {
+        <form class="update-board-form" [formGroup]="boardForm">
+          <input type="text" formControlName="name" />
+          <button type="submit" (click)="updateBoard()">Valider</button>
+        </form>
+        }
+      </div>
 
       <div class="board-users">
         @for (user of board.users; track $index) {
@@ -12,12 +21,20 @@
         </span>
         } @if (user?.idUser === board.users?.at(0)?.idUser) {
         <button
-          class="add-user-btn"
-          mat-flat-button
-          (click)="openAddUserDialog()"
+          mat-icon-button
+          [matMenuTriggerFor]="menu"
+          class="board-card-menu"
         >
-          Ajouter un membre
+          <mat-icon>more_vert</mat-icon>
         </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="openAddUserDialog()">
+            Ajouter un membre
+          </button>
+          <button mat-menu-item (click)="setHideUpdateBoardForm(false)">
+            Modifier
+          </button>
+        </mat-menu>
         }
       </div>
     </div>
