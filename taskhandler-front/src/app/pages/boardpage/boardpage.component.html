@@ -10,6 +10,14 @@
         <span [matTooltip]="user.username">
           {{ user?.username?.substr(0, 2)?.toUpperCase() }}
         </span>
+        } @if (user?.idUser === board.users?.at(0)?.idUser) {
+        <button
+          class="add-user-btn"
+          mat-flat-button
+          (click)="openAddUserDialog()"
+        >
+          Ajouter un membre
+        </button>
         }
       </div>
     </div>

@@ -51,10 +51,10 @@ public class BoardController {
         }
     }
 
-    @PostMapping("/create/membership/{idBoard}/{idUser}")
-    public ResponseEntity<ApiResponse> addMembership(@PathVariable int idBoard, @PathVariable int idUser) {
+    @PostMapping("/create/membership/{idBoard}/{username}")
+    public ResponseEntity<ApiResponse> addMembership(@PathVariable int idBoard, @PathVariable String username) {
         try {
-            boardService.addMembership(idBoard, idUser);
+            boardService.addMembership(idBoard, username);
             return ResponseEntity.status(HttpStatus.CREATED).body(new ApiResponse("Membership added"));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse("Error while adding membership : " + e.getMessage()));

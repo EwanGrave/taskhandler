@@ -65,9 +65,9 @@ public class BoardService {
         return BoardDTO.convertToDTO(boardRepository.save(board));
     }
 
-    public void addMembership(int idBoard, int idUser) throws Exception {
+    public void addMembership(int idBoard, String username) throws Exception {
         Board board = this.getBoardById(idBoard);
-        User user = userService.getUserById(idUser);
+        User user = userService.getUserByUsername(username);
 
         if (board.getUsers().contains(user)) {
             throw new Exception("User already exists in board");

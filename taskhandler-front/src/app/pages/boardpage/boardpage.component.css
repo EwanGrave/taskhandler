@@ -21,6 +21,10 @@
   border-radius: 50%;
 }
 
+.add-user-btn {
+  margin-left: 20px;
+}
+
 .board-title {
   font-size: 24px;
   font-weight: 450;

@@ -22,6 +22,14 @@ public class UserService {
         return user;
     }
 
+    public User getUserByUsername(String username) throws Exception {
+        User user = userRepository.findByUsername(username);
+        if (user == null) {
+            throw new Exception("Missing user for name " + username);
+        }
+        return user;
+    }
+
     public UserDTO createUser(UserDTOWithPassword user) {
         return UserDTO.convertToDTO(userRepository.save(UserDTOWithPassword.convertToEntity(user)));
     }

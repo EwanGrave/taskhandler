@@ -23,6 +23,8 @@ import { MatInputModule } from '@angular/material/input';
 import { HeaderComponent } from '../../components/header/header.component';
 import { DndDropEvent, DndModule } from 'ngx-drag-drop';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDialog } from '@angular/material/dialog';
+import { AdduserdialogComponent } from '../../components/dialog/adduserdialog/adduserdialog.component';
 
 @Component({
   selector: 'app-boardpage',
@@ -46,6 +48,7 @@ export class BoardpageComponent {
   loginService = inject(LoginService);
   router = inject(Router);
   route = inject(ActivatedRoute);
+  readonly dialog = inject(MatDialog);
 
   idBoard!: number;
   board!: BoardDTO;
@@ -114,5 +117,9 @@ export class BoardpageComponent {
       oldList.tasks = oldList.tasks?.filter((t) => t.idTask !== task.idTask);
       list.tasks?.push(task);
     }
+  }
+
+  openAddUserDialog(): void {
+    this.dialog.open(AdduserdialogComponent, { data: this.board });
   }
 }
