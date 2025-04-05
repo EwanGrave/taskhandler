@@ -8,10 +8,20 @@
     </div>
   </div>
 
-  @if (task.dueDate) {
-  <div class="due-date">
-    <i class="material-icons">access_time</i>
-    {{ task.dueDate | date : "dd MMMM" }}
+  <div class="task-content">
+    @if (task.dueDate) {
+    <div class="due-date">
+      <i class="material-icons">access_time</i>
+      {{ task.dueDate | date : "dd MMMM" }}
+    </div>
+    }
+
+    <div class="users">
+      @for (user of task.users; track $index) { @if ($index < 5) {
+      <span [matTooltip]="user.username">
+        {{ user.username?.substr(0, 2)?.toUpperCase() }}
+      </span>
+      } }
+    </div>
   </div>
-  }
 </div>

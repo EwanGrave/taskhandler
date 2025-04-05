@@ -47,6 +47,7 @@
         (dndDrop)="onDrop($event, list)"
         (onTasklistDelete)="deleteTaskList($event)"
         [tasklist]="list"
+        [users]="board.users"
       ></app-tasklist>
       } @if (hideNewListForm) {
       <button mat-button (click)="setHideNewListForm(false)">

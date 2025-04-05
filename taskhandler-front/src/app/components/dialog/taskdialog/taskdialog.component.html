@@ -9,12 +9,48 @@
       <div class="task-title">{{ task.title }}</div>
     </div>
 
-    <div class="due-date">
-      <form class="due-date-form" [formGroup]="dueDateForm">
-        <label>Date limite</label>
-        <br />
-        <input type="date" (change)="changeDueDate()" formControlName="date" />
-      </form>
+    <div class="task-inputs">
+      <div class="due-date">
+        <form class="due-date-form" [formGroup]="dueDateForm">
+          <label>Date limite</label>
+          <br />
+          <input
+            type="date"
+            (change)="changeDueDate()"
+            formControlName="date"
+          />
+        </form>
+      </div>
+
+      <div class="users">
+        <form class="users-form">
+          <div class="multiselect">
+            <label>Membres</label>
+            <br />
+            <div class="selectBox" (click)="changeShowCheckboxes()">
+              <select>
+                <option>Sélectionnez les membres</option>
+              </select>
+              <div class="overSelect"></div>
+            </div>
+            @if (showCheckboxes) {
+            <div id="checkboxes">
+              @for (user of users; track $index) {
+              <label [for]="$index">
+                <input
+                  type="checkbox"
+                  [id]="$index"
+                  [checked]="isUserInTask(user)"
+                  (click)="handleMembers(user)"
+                />
+                {{ user.username }}
+              </label>
+              }
+            </div>
+            }
+          </div>
+        </form>
+      </div>
     </div>
 
     <div class="description">
@@ -30,7 +66,6 @@
 
   <div class="right-panel">
     <div>Actions</div>
-    <button mat-flat-button>Membre</button>
     <button mat-flat-button>Tag</button>
     <button mat-flat-button>Checklist</button>
     <button mat-flat-button (click)="deleteTask()">Supprimer</button>

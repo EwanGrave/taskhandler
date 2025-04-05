@@ -59,11 +59,54 @@
   gap: 20px;
 }
 
-.due-date-form input {
+.task-inputs {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.due-date-form input,
+.users-form select {
   background-color: #22272b;
   color: rgb(199, 199, 199);
   border: 0.5px solid rgb(218, 218, 218);
   border-radius: 4px;
   padding: 5px;
   margin-top: 5px;
+}
+
+.multiselect {
+  width: 200px;
+}
+
+.selectBox {
+  position: relative;
+}
+
+.selectBox select {
+  width: 100%;
+}
+
+.overSelect {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+#checkboxes {
+  position: absolute;
+  border: 0.5px #dadada solid;
+  background-color: #22272b;
+  border-radius: 3px;
+}
+
+#checkboxes label {
+  display: block;
+  padding: 2px;
+}
+
+#checkboxes label:hover {
+  background-color: #1e90ff;
 }
