@@ -56,6 +56,7 @@ export class TasklistComponent {
         title: this.taskForm.value.name ?? '',
         description: '',
         checkitems: [],
+        users: [],
       };
 
       this.taskService
