@@ -1,4 +1,4 @@
-import { Component, inject, SimpleChange } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
   MatDialogModule,
@@ -57,6 +57,12 @@ export class TaskdialogComponent {
     if (this.dueDateForm.valid && this.dueDateForm.value.date) {
       this.task.dueDate = this.dueDateForm.value.date;
       this.taskService.updateTask(this.task).subscribe();
+    }
+  }
+
+  deleteTask(): void {
+    if (this.task.idTask) {
+      this.taskService.deleteTask(this.task.idTask).subscribe();
     }
   }
 }
