@@ -4,7 +4,13 @@ import {
   MatDialogModule,
   MatDialogRef,
 } from '@angular/material/dialog';
-import { TaskControllerService, TaskDTO, UserDTO } from '../../../../../api';
+import {
+  CommentControllerService,
+  CommentDTO,
+  TaskControllerService,
+  TaskDTO,
+  UserDTO,
+} from '../../../../../api';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -15,6 +21,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { TaskDataType } from '../../../types/TaskDataType';
+import { LoginService } from '../../../services/login.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-taskdialog',
@@ -24,6 +32,7 @@ import { TaskDataType } from '../../../types/TaskDataType';
     MatCheckboxModule,
     MatTooltipModule,
     ReactiveFormsModule,
+    DatePipe,
   ],
   templateUrl: './taskdialog.component.html',
   styleUrl: './taskdialog.component.css',
@@ -34,11 +43,17 @@ export class TaskdialogComponent {
   task!: TaskDTO;
   users!: UserDTO[];
   taskService = inject(TaskControllerService);
+  loginService = inject(LoginService);
+  commentService = inject(CommentControllerService);
 
   showCheckboxes: boolean = false;
 
   dueDateForm = new FormGroup({
     date: new FormControl<string>('', Validators.required),
+  });
+
+  commentForm = new FormGroup({
+    content: new FormControl<string>('', Validators.required),
   });
 
   ngOnInit(): void {
@@ -94,5 +109,22 @@ export class TaskdialogComponent {
 
   isUserInTask(user: UserDTO): boolean {
     return this.task.users?.find((u) => u.idUser === user.idUser) !== undefined;
+  }
+
+  createComment(): void {
+    const user = this.loginService.getLoggedUser();
+    if (this.commentForm.valid && user && this.task.idTask) {
+      const comment: CommentDTO = {
+        content: this.commentForm.value.content ?? '',
+        createdAt: new Date().toISOString(),
+        user: user,
+      };
+
+      this.commentService
+        .createComment(this.task.idTask, comment)
+        .subscribe((newComment) => this.task.comments?.push(newComment));
+
+      this.commentForm.reset();
+    }
   }
 }

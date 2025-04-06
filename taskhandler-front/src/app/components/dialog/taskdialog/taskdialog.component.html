@@ -62,6 +62,33 @@
         placeholder="Ajoutez une description"
       ></textarea>
     </div>
+
+    <div class="comments">
+      <div class="task-label-title">Commentaires</div>
+
+      <form class="comment-form" [formGroup]="commentForm">
+        <input
+          type="text"
+          placeholder="Écrivez un commentaire..."
+          formControlName="content"
+        />
+        <button mat-button (click)="createComment()">Envoyer</button>
+      </form>
+
+      @for (comment of task.comments; track $index) {
+      <div class="comment">
+        <div>
+          <span class="comment-user">{{ comment.user?.username }}</span>
+          <span class="comment-content">{{ comment.content }}</span>
+        </div>
+        <div class="comment-date">
+          Le {{ comment.createdAt | date : "dd MMMM" }}
+        </div>
+      </div>
+      } @empty {
+      <div>Aucun commentaire</div>
+      }
+    </div>
   </div>
 
   <div class="right-panel">

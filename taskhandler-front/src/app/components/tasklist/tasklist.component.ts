@@ -63,6 +63,7 @@ export class TasklistComponent {
         description: '',
         checkitems: [],
         users: [],
+        comments: [],
       };
 
       this.taskService
@@ -70,6 +71,7 @@ export class TasklistComponent {
         .subscribe((newTask) => this.tasklist.tasks?.push(newTask));
 
       this.setHideNewTaskForm(true);
+      this.taskForm.reset();
     }
   }
 

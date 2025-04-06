@@ -66,7 +66,8 @@
 }
 
 .due-date-form input,
-.users-form select {
+.users-form select,
+.comment-form input {
   background-color: #22272b;
   color: rgb(199, 199, 199);
   border: 0.5px solid rgb(218, 218, 218);
@@ -109,4 +110,30 @@
 
 #checkboxes label:hover {
   background-color: #1e90ff;
+}
+
+.comment-form input {
+  width: 75%;
+  padding: 7px;
+  margin-right: 10px;
+}
+
+.comment {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.comment div:first-of-type {
+  display: flex;
+  gap: 7px;
+  margin-bottom: 3px;
+}
+
+.comment-user {
+  font-weight: 500;
+}
+
+.comment-date {
+  font-size: 14px;
+  font-weight: 300;
 }
