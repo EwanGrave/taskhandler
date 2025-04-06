@@ -28,11 +28,21 @@ public class Task {
             inverseJoinColumns = @JoinColumn(name = "id_user"))
     private List<User> users;
 
+    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
+    private List<Comment> comments;
+
     @ManyToOne
     @JoinColumn(name="id_tasklist", nullable=false)
     private Tasklist tasklist;
 
-    public Task(Long idTask, String title, String description, List<CheckItem> checklist, boolean done, Date dueDate, List<User> users) {
+    public Task(Long idTask,
+                String title,
+                String description,
+                List<CheckItem> checklist,
+                boolean done,
+                Date dueDate,
+                List<User> users,
+                List<Comment> comments) {
         this.idTask = idTask;
         this.title = title;
         this.description = description;
@@ -40,6 +50,7 @@ public class Task {
         this.done = done;
         this.dueDate = dueDate;
         this.users = users;
+        this.comments = comments;
     }
 
     public Task() {}
@@ -98,5 +109,9 @@ public class Task {
 
     public void removeUser(User user) {
         this.users.remove(user);
+    }
+
+    public List<Comment> getComments() {
+        return comments;
     }
 }

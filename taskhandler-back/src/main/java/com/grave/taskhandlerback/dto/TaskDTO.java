@@ -15,8 +15,9 @@ public class TaskDTO {
     private Date dueDate;
     private List<CheckItemDTO> checkitems;
     private List<UserDTO> users;
+    private List<CommentDTO> comments;
 
-    public TaskDTO(Long idTask, String title, String description, List<CheckItemDTO> checkitems, boolean done, Date dueDate, List<UserDTO> users) {
+    public TaskDTO(Long idTask, String title, String description, List<CheckItemDTO> checkitems, boolean done, Date dueDate, List<UserDTO> users, List<CommentDTO> comments) {
         this.idTask = idTask;
         this.title = title;
         this.description = description;
@@ -24,6 +25,7 @@ public class TaskDTO {
         this.done = done;
         this.dueDate = dueDate;
         this.users = users;
+        this.comments = comments;
     }
 
     public Long getIdTask() {
@@ -58,6 +60,10 @@ public class TaskDTO {
         return this.users;
     }
 
+    public List<CommentDTO> getComments() {
+        return comments;
+    }
+
     public static TaskDTO convertToDTO(Task task) {
         return new TaskDTO(
                 task.getIdTask(),
@@ -66,7 +72,8 @@ public class TaskDTO {
                 task.getChecklist().stream().map(CheckItemDTO::convertToDTO).collect(Collectors.toList()),
                 task.isDone(),
                 task.getDueDate(),
-                task.getUsers().stream().map(UserDTO::convertToDTO).collect(Collectors.toList())
+                task.getUsers().stream().map(UserDTO::convertToDTO).collect(Collectors.toList()),
+                task.getComments().stream().map(CommentDTO::convertToDTO).collect(Collectors.toList())
         );
     }
 
@@ -78,7 +85,8 @@ public class TaskDTO {
                 task.getCheckitems().stream().map(CheckItemDTO::convertToEntity).collect(Collectors.toList()),
                 task.isDone(),
                 task.getDueDate(),
-                task.getUsers().stream().map(UserDTO::convertToEntity).collect(Collectors.toList())
+                task.getUsers().stream().map(UserDTO::convertToEntity).collect(Collectors.toList()),
+                task.getComments().stream().map(CommentDTO::convertToEntity).collect(Collectors.toList())
         );
     }
 }

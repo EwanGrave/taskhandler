@@ -21,6 +21,9 @@ public class User {
     @ManyToMany(mappedBy = "users")
     private List<Task> tasks;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Comment> comments;
+
     public User(Long idUser, String username, String password) {
         this.idUser = idUser;
         this.username = username;
@@ -50,5 +53,9 @@ public class User {
 
     public List<Board> getBoards() {
         return boards;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
     }
 }
