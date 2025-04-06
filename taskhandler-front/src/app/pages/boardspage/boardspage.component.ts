@@ -24,7 +24,7 @@ import { HeaderComponent } from '../../components/header/header.component';
   templateUrl: './boardspage.component.html',
   styleUrl: './boardspage.component.css',
 })
-export class WorkspacespageComponent {
+export class BoardspageComponent {
   loginService = inject(LoginService);
   boardsService = inject(BoardControllerService);
   boards: BoardDTO[] = [];

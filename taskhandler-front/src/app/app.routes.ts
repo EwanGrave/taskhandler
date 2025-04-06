@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { LoginpageComponent } from './pages/loginpage/loginpage.component';
 import { RegisterpageComponent } from './pages/registerpage/registerpage.component';
-import { WorkspacespageComponent } from './pages/boardspage/boardspage.component';
+import { BoardspageComponent } from './pages/boardspage/boardspage.component';
 import { BoardpageComponent } from './pages/boardpage/boardpage.component';
 
 export const routes: Routes = [
@@ -11,7 +11,7 @@ export const routes: Routes = [
   },
   {
     path: 'u/boards',
-    component: WorkspacespageComponent,
+    component: BoardspageComponent,
   },
   {
     path: 'login',
