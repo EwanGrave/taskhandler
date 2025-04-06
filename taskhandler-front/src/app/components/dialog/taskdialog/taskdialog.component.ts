@@ -86,6 +86,8 @@ export class TaskdialogComponent {
   deleteTask(): void {
     if (this.task.idTask) {
       this.taskService.deleteTask(this.task.idTask).subscribe();
+      this.data.deleteTaskCallback();
+      this.dialogRef.close();
     }
   }
 

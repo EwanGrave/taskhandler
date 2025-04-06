@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { TaskDTO, UserDTO } from '../../../../api';
 import { MatDialog } from '@angular/material/dialog';
 import { TaskdialogComponent } from '../dialog/taskdialog/taskdialog.component';
@@ -15,13 +15,15 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 export class TaskComponent {
   @Input({ required: true }) task!: TaskDTO;
   @Input({ required: true }) users!: UserDTO[] | undefined;
+  @Output() onTaskDelete = new EventEmitter<number>();
   readonly dialog = inject(MatDialog);
 
   onClick(): void {
-    if (this.users) {
+    if (this.users && this.task.idTask) {
       const data: TaskDataType = {
         task: this.task,
         users: this.users,
+        deleteTaskCallback: () => this.onTaskDelete.emit(this.task.idTask),
       };
       this.dialog.open(TaskdialogComponent, {
         data: data,

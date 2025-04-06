@@ -43,6 +43,7 @@
       [dndDisableIf]="draggable.disable"
       [task]="task"
       [users]="users"
+      (onTaskDelete)="deleteTask($event)"
     ></app-task>
     }@empty {
     <div>Aucune tâche</div>

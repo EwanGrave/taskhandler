@@ -80,4 +80,10 @@ export class TasklistComponent {
       this.onTasklistDelete.emit(this.tasklist.idTasklist);
     }
   }
+
+  deleteTask(idTask: number): void {
+    this.tasklist.tasks = this.tasklist.tasks?.filter(
+      (task) => task.idTask !== idTask
+    );
+  }
 }
