@@ -9,6 +9,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { HeaderComponent } from '../../components/header/header.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-boardspage',
@@ -32,6 +33,8 @@ export class BoardspageComponent {
   router = inject(Router);
   readonly dialog = inject(MatDialog);
 
+  snackBar = inject(MatSnackBar);
+
   ngOnInit(): void {
     this.user = this.loginService.getLoggedUser();
     if (!this.user || !this.user.idUser) {
@@ -51,6 +54,7 @@ export class BoardspageComponent {
     if (id && this.user?.idUser) {
       this.boardsService.deleteBoard(id, this.user.idUser).subscribe();
       this.boards = this.boards.filter((board) => board.idBoard !== id);
+      this.snackBar.open('Tableau supprimé', 'Fermer');
     }
   }
 }

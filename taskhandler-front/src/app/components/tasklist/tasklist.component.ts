@@ -16,6 +16,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { DndModule, EffectAllowed } from 'ngx-drag-drop';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-tasklist',
@@ -32,6 +33,7 @@ import { DndModule, EffectAllowed } from 'ngx-drag-drop';
 })
 export class TasklistComponent {
   taskService = inject(TaskControllerService);
+  snack = inject(MatSnackBar);
 
   @Input({ required: true }) tasklist!: TasklistDTO;
   @Input({ required: true }) users!: UserDTO[] | undefined;
@@ -41,7 +43,7 @@ export class TasklistComponent {
   taskForm = new FormGroup({
     name: new FormControl<string>('', [
       Validators.required,
-      Validators.minLength(3),
+      Validators.minLength(1),
       Validators.maxLength(20),
     ]),
   });
@@ -72,6 +74,7 @@ export class TasklistComponent {
 
       this.setHideNewTaskForm(true);
       this.taskForm.reset();
+      this.snack.open('Tâche créée', 'Fermer');
     }
   }
 
@@ -85,5 +88,6 @@ export class TasklistComponent {
     this.tasklist.tasks = this.tasklist.tasks?.filter(
       (task) => task.idTask !== idTask
     );
+    this.snack.open('Tâche supprimée', 'Fermer');
   }
 }

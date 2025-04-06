@@ -15,6 +15,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { BoardControllerService, BoardDTO } from '../../../../../api';
 import { LoginService } from '../../../services/login.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-createboard',
@@ -33,6 +34,7 @@ export class CreateboardComponent {
   boards = inject<BoardDTO[]>(MAT_DIALOG_DATA);
   loginService = inject(LoginService);
   boardService = inject(BoardControllerService);
+  snackBar = inject(MatSnackBar);
 
   boardFormGroup = new FormGroup({
     name: new FormControl<string>('', [
@@ -54,6 +56,7 @@ export class CreateboardComponent {
         this.boards.push(newBoard);
       });
       this.dialogRef.close();
+      this.snackBar.open('Tableau créé', 'Fermer');
     }
   }
 }

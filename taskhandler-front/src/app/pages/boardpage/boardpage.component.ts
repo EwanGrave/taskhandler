@@ -27,6 +27,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AdduserdialogComponent } from '../../components/dialog/adduserdialog/adduserdialog.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-boardpage',
@@ -52,6 +53,7 @@ export class BoardpageComponent {
   loginService = inject(LoginService);
   router = inject(Router);
   route = inject(ActivatedRoute);
+  snack = inject(MatSnackBar);
   readonly dialog = inject(MatDialog);
 
   idBoard!: number;
@@ -105,6 +107,7 @@ export class BoardpageComponent {
       this.board.name = this.boardForm.value.name ?? '';
       this.boardService.updateBoard(this.user.idUser, this.board).subscribe();
       this.setHideUpdateBoardForm(true);
+      this.snack.open('Board mis à jour', 'Fermer');
     }
   }
 
@@ -121,6 +124,7 @@ export class BoardpageComponent {
 
       this.setHideNewListForm(true);
       this.tasklistForm.reset();
+      this.snack.open('Liste créée', 'Fermer');
     }
   }
 
@@ -129,6 +133,7 @@ export class BoardpageComponent {
     this.board.tasklists = this.board.tasklists?.filter(
       (tasklist) => tasklist.idTasklist !== idTasklist
     );
+    this.snack.open('Liste supprimée', 'Fermer');
   }
 
   onDrop(event: DndDropEvent, list: TasklistDTO) {
